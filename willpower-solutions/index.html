@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+========================================================
+  WILLPOWER SOLUTIONS — Demo Site
+  Built by: Travis Locean (traviskenlocean1@gmail.com)
+  Version: 3.0 | Date: 2026-05-15
+========================================================
+  ASSETS TO REQUEST FROM MIKE:
+  ─────────────────────────────────────────────────────
+  1. Formspree ID → replace "YOUR_FORM_ID" in the form action
+  2. logo.png     → High-res logo (transparent bg)
+  3. hero-bg.jpg  → Job site photo for hero background
+  4. project-1.jpg through project-4.jpg → Real job photos
+  5. Google Business profile URL (for reviews link)
+  6. Facebook / Instagram URLs
+  ─────────────────────────────────────────────────────
+-->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Willpower Solutions — Professional demolition services in Fort Myers, FL. Residential and commercial teardowns, concrete removal, pool demo, and site clearing. Call (239) 848-6143.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Willpower Solutions | Demolition Services Fort Myers FL">
+  <meta property="og:description" content="Fort Myers demolition experts. Residential & commercial teardowns, site clearing, concrete removal. 5.0 stars · 33 reviews. Call 24/7.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://willpowersolutions.com">
+  <title>Willpower Solutions | Demolition Services — Fort Myers, FL</title>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Willpower Solutions",
+    "description": "Professional demolition services in Fort Myers, FL",
+    "telephone": "+12398486143",
+    "address": { "@type": "PostalAddress", "addressLocality": "Fort Myers", "addressRegion": "FL", "addressCountry": "US" },
+    "openingHours": "Mo-Su 00:00-24:00",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "33" }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --teal: #00897B;
+      --teal-dark: #00695C;
+      --gold: #C9A020;
+      --black: #111111;
+      --gray: #555555;
+      --light: #F4F4F4;
+      --border: #E2E2E2;
+      --white: #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--white); color: var(--black); font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #f0f0f0; }
+    ::-webkit-scrollbar-thumb { background: var(--teal); }
+
+    .container { max-width: 1220px; margin: 0 auto; padding: 0 32px; }
+    .section-label { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: 3.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(42px, 5.5vw, 72px);
+      line-height: 1;
+      color: var(--black);
+      letter-spacing: 1px;
+    }
+    .section-title .teal { color: var(--teal); }
+    .section-title .gold { color: var(--gold); }
+    .section-sub { font-size: 18px; color: var(--gray); max-width: 600px; margin-top: 16px; line-height: 1.7; font-weight: 500; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--teal); color: #fff;
+      font-weight: 800; font-size: 15px; letter-spacing: .5px;
+      padding: 17px 36px; border: none; cursor: pointer;
+      transition: background .2s, transform .15s;
+      text-transform: uppercase;
+    }
+    .btn-primary:hover { background: var(--teal-dark); transform: translateY(-2px); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: transparent; color: var(--teal);
+      font-weight: 700; font-size: 15px; letter-spacing: .5px;
+      padding: 15px 32px; border: 2px solid var(--teal); cursor: pointer;
+      transition: background .2s, color .2s;
+      text-transform: uppercase;
+    }
+    .btn-outline:hover { background: var(--teal); color: #fff; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(255,255,255,.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow .3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,.1); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+    .nav-logo { display: flex; align-items: center; gap: 13px; }
+    .nav-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .nav-logo-text span:first-child { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 2px; color: var(--teal); }
+    .nav-logo-text span:last-child { font-size: 9px; font-weight: 800; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a { font-size: 13px; font-weight: 700; letter-spacing: .5px; color: #444; text-transform: uppercase; transition: color .2s; }
+    .nav-links a:hover { color: var(--teal); }
+    .nav-cta { background: var(--teal); color: #fff; font-weight: 800; font-size: 13px; letter-spacing: .5px; padding: 12px 24px; text-transform: uppercase; transition: background .2s; }
+    .nav-cta:hover { background: var(--teal-dark); }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--black); transition: all .25s; }
+    .nav-mobile { display: none; background: #fff; border-top: 1px solid var(--border); padding: 20px 32px; }
+    .nav-mobile.open { display: block; }
+    .nav-mobile a { display: block; padding: 14px 0; font-size: 16px; font-weight: 700; color: #333; border-bottom: 1px solid var(--border); text-transform: uppercase; letter-spacing: .5px; }
+    .nav-mobile a:last-child { border-bottom: none; color: var(--teal); }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex; align-items: center;
+      padding-top: 76px;
+      overflow: hidden;
+    }
+    .hero-photo {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1504307651486-9d9c69fa21c0?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(105deg, rgba(0,0,0,.78) 0%, rgba(0,0,0,.55) 55%, rgba(0,0,0,.3) 100%);
+    }
+    .hero-layout {
+      position: relative; z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 60px;
+      align-items: center;
+      padding: 80px 0;
+      width: 100%;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 800; letter-spacing: 3px;
+      color: var(--gold); text-transform: uppercase; margin-bottom: 20px;
+    }
+    .hero-badge-dot { width: 6px; height: 6px; background: var(--gold); }
+    .hero-stars { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; }
+    .hero-stars-name { font-size: 15px; font-weight: 700; color: #fff; }
+    .hero-stars-icons { color: #F4B400; font-size: 18px; letter-spacing: 2px; }
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(64px, 9vw, 120px);
+      line-height: .9;
+      color: #fff;
+      margin-bottom: 26px;
+      letter-spacing: 1px;
+    }
+    .hero-title .accent { color: var(--teal); }
+    .hero-title .gold { color: var(--gold); }
+    .hero-desc { font-size: 18px; color: rgba(255,255,255,.82); max-width: 540px; margin-bottom: 36px; line-height: 1.7; font-weight: 500; }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+
+    /* ─── HERO FORM CARD ─── */
+    .hero-form-card {
+      background: #fff;
+      padding: 36px 32px;
+      box-shadow: 0 24px 80px rgba(0,0,0,.35);
+    }
+    .form-eyebrow { font-size: 10px; font-weight: 800; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; }
+    .form-title { font-family: 'Bebas Neue', sans-serif; font-size: 34px; color: var(--black); margin-bottom: 24px; letter-spacing: 1px; }
+    .form-group { margin-bottom: 14px; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1.5px solid var(--border);
+      background: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--black);
+      outline: none;
+      transition: border-color .2s;
+      appearance: none;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: #aaa; }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--teal); }
+    .form-group textarea { resize: vertical; min-height: 90px; }
+    .form-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .form-submit {
+      width: 100%; padding: 17px;
+      background: var(--gold); color: #fff;
+      font-family: 'Inter', sans-serif; font-weight: 900;
+      font-size: 15px; letter-spacing: 1px; text-transform: uppercase;
+      border: none; cursor: pointer;
+      transition: background .2s, transform .15s;
+      margin-top: 6px;
+    }
+    .form-submit:hover { background: #b8911c; transform: translateY(-1px); }
+
+    /* ─── TRUST BAR ─── */
+    #trust {
+      background: var(--black); padding: 0;
+      border-top: 4px solid var(--gold);
+    }
+    .trust-scroll { display: flex; overflow-x: auto; }
+    .trust-scroll::-webkit-scrollbar { display: none; }
+    .trust-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 20px 42px; border-right: 1px solid rgba(255,255,255,.1);
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .trust-item:last-child { border-right: none; }
+    .trust-icon { color: var(--gold); font-size: 20px; }
+    .trust-text { font-size: 14px; font-weight: 700; color: #fff; letter-spacing: .3px; }
+    .trust-text em { font-style: normal; color: rgba(255,255,255,.5); font-weight: 500; }
+
+    /* ─── SERVICES ─── */
+    #services { padding: 110px 0; background: #fff; }
+    .services-header { margin-bottom: 60px; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); border: 1px solid var(--border); }
+    .service-card {
+      background: #fff; padding: 44px 36px;
+      position: relative; overflow: hidden;
+      transition: background .2s;
+    }
+    .service-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 4px; background: var(--teal); transition: width .35s; }
+    .service-card:hover { background: var(--light); }
+    .service-card:hover::after { width: 100%; }
+    .service-icon {
+      width: 54px; height: 54px;
+      border: 2px solid var(--teal);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--teal); margin-bottom: 24px;
+    }
+    .service-name { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 1.5px; margin-bottom: 12px; color: var(--black); }
+    .service-desc { font-size: 15px; color: var(--gray); line-height: 1.7; font-weight: 500; }
+
+    /* ─── WHY ─── */
+    #why { padding: 110px 0; background: var(--light); }
+    .why-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .why-points { display: flex; flex-direction: column; gap: 28px; margin-top: 40px; }
+    .why-point { display: flex; gap: 20px; align-items: flex-start; }
+    .why-num {
+      min-width: 40px; height: 40px;
+      background: var(--teal); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif; font-size: 18px; flex-shrink: 0;
+    }
+    .why-point-title { font-weight: 800; font-size: 16px; margin-bottom: 5px; color: var(--black); letter-spacing: .2px; }
+    .why-point-desc { font-size: 14px; color: var(--gray); line-height: 1.7; font-weight: 500; }
+    .why-right-col { padding-top: 16px; }
+    .why-cta-block {
+      background: var(--white); border: 1px solid var(--border);
+      padding: 40px; margin-top: 40px;
+      border-left: 5px solid var(--gold);
+    }
+    .why-cta-block p { font-size: 17px; color: var(--gray); line-height: 1.7; margin-bottom: 28px; font-weight: 500; }
+
+    /* ─── PROJECTS ─── */
+    #projects { padding: 110px 0; background: #fff; }
+    .projects-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 44px; flex-wrap: wrap; gap: 20px; }
+    .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; }
+    .project-card {
+      position: relative; overflow: hidden;
+      aspect-ratio: 16/10;
+      background: var(--light);
+    }
+    .project-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .5s ease;
+    }
+    .project-card:hover img { transform: scale(1.05); }
+    .project-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 24px 28px;
+      background: linear-gradient(transparent, rgba(0,0,0,.82));
+    }
+    .project-tag {
+      display: inline-block; background: var(--teal);
+      color: #fff; font-size: 10px; font-weight: 800;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      padding: 4px 10px; margin-bottom: 8px;
+    }
+    .project-name { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: #fff; letter-spacing: 1.5px; line-height: 1.1; }
+    .project-loc { font-size: 13px; color: rgba(255,255,255,.65); margin-top: 4px; font-weight: 500; }
+
+    /* ─── REVIEWS ─── */
+    #reviews { padding: 110px 0; background: var(--light); }
+    .reviews-top { display: flex; align-items: center; gap: 28px; margin-bottom: 16px; flex-wrap: wrap; }
+    .reviews-score { font-family: 'Bebas Neue', sans-serif; font-size: 96px; color: var(--black); line-height: 1; }
+    .reviews-stars { color: #F4B400; font-size: 30px; letter-spacing: 3px; margin-bottom: 5px; }
+    .reviews-count { font-size: 15px; color: var(--gray); font-weight: 600; }
+    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; background: var(--border); border: 1px solid var(--border); margin-top: 44px; }
+    .review-card { background: #fff; padding: 36px 30px; display: flex; flex-direction: column; gap: 16px; }
+    .review-stars { color: #F4B400; font-size: 14px; letter-spacing: 2px; }
+    .review-text { font-size: 15px; color: #444; line-height: 1.8; flex: 1; font-weight: 500; }
+    .review-footer { display: flex; align-items: center; gap: 14px; padding-top: 18px; border-top: 1px solid var(--border); }
+    .review-av { width: 40px; height: 40px; background: var(--teal); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+    .review-name { font-weight: 800; font-size: 15px; color: var(--black); }
+    .review-date { font-size: 12px; color: #aaa; margin-top: 2px; font-weight: 500; }
+    .reviews-cta { text-align: center; margin-top: 40px; }
+
+    /* ─── FAQ ─── */
+    #faq { padding: 110px 0; background: var(--light); }
+    .faq-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; margin-top: 52px; }
+    .faq-list { display: flex; flex-direction: column; gap: 2px; }
+    details.faq-item {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-left: 4px solid transparent;
+      transition: border-color .2s;
+    }
+    details.faq-item[open] { border-left-color: var(--teal); }
+    details.faq-item summary {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 24px;
+      font-weight: 800; font-size: 15px; color: var(--black);
+      cursor: pointer; list-style: none; gap: 16px;
+      user-select: none;
+    }
+    details.faq-item summary::-webkit-details-marker { display: none; }
+    .faq-icon {
+      width: 28px; height: 28px; flex-shrink: 0;
+      background: var(--light); border: 1.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 400; color: var(--teal);
+      transition: background .2s, transform .3s;
+      line-height: 1;
+    }
+    details.faq-item[open] .faq-icon { background: var(--teal); color: #fff; transform: rotate(45deg); }
+    .faq-body { padding: 0 24px 20px; font-size: 15px; color: var(--gray); line-height: 1.75; font-weight: 500; }
+
+    /* ─── AREA ─── */
+    #area { padding: 110px 0; background: #fff; }
+    .area-layout { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-top: 52px; }
+    .area-county-name { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2.5px; color: var(--black); border-bottom: 3px solid var(--teal); padding-bottom: 12px; margin-bottom: 18px; }
+    .area-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .area-chip { background: var(--light); border: 1px solid var(--border); padding: 7px 16px; font-size: 13px; font-weight: 600; color: #555; transition: background .2s, color .2s, border-color .2s; }
+    .area-chip:hover { background: var(--teal); color: #fff; border-color: var(--teal); }
+
+    /* ─── FINAL CTA ─── */
+    #cta { padding: 110px 0; background: var(--black); position: relative; overflow: hidden; }
+    .cta-stripe { position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, var(--gold), var(--teal)); }
+    .cta-inner { text-align: center; max-width: 720px; margin: 0 auto; position: relative; z-index: 2; }
+    .cta-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(52px, 7vw, 90px); line-height: 1; color: #fff; margin-bottom: 20px; letter-spacing: 1px; }
+    .cta-title .teal { color: var(--teal); }
+    .cta-desc { font-size: 18px; color: rgba(255,255,255,.55); margin-bottom: 44px; line-height: 1.7; font-weight: 500; }
+    .cta-btns { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-bottom: 40px; }
+    .cta-phone { font-family: 'Bebas Neue', sans-serif; font-size: 38px; color: var(--gold); letter-spacing: 3px; }
+
+    /* ─── FOOTER ─── */
+    footer { background: #0a0a0a; border-top: 1px solid rgba(255,255,255,.07); padding: 64px 0 36px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 64px; margin-bottom: 52px; }
+    .footer-desc { font-size: 14px; color: rgba(255,255,255,.45); line-height: 1.8; margin-top: 18px; max-width: 300px; font-weight: 500; }
+    .footer-heading { font-size: 10px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-links a { font-size: 14px; font-weight: 600; color: rgba(255,255,255,.45); transition: color .2s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-ci { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,.45); margin-bottom: 14px; }
+    .footer-ci svg { margin-top: 2px; flex-shrink: 0; color: var(--teal); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.07); padding-top: 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,.25); font-weight: 500; }
+
+    /* ─── ANIMATIONS ─── */
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity .65s ease, transform .65s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fd1 { transition-delay: .1s; } .fd2 { transition-delay: .2s; } .fd3 { transition-delay: .3s; }
+    .fd4 { transition-delay: .4s; } .fd5 { transition-delay: .5s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1100px) {
+      .hero-layout { grid-template-columns: 1fr 380px; gap: 40px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .why-layout { grid-template-columns: 1fr; gap: 48px; }
+      .area-layout { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 44px; }
+    }
+    @media (max-width: 860px) {
+      .hero-layout { grid-template-columns: 1fr; }
+      .hero-form-card { max-width: 500px; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .services-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .faq-layout { grid-template-columns: 1fr; gap: 2px; }
+      .area-layout { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+      .why-cta-block { padding: 28px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .btn-primary, .btn-outline { width: 100%; justify-content: center; }
+      .cta-btns { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#hero" class="nav-logo">
+          <svg width="46" height="44" viewBox="0 0 46 44" fill="none">
+            <polyline points="2,30 23,10 44,30" stroke="#C9A020" stroke-width="5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+            <polyline points="2,18 23,38 44,18" stroke="#00897B" stroke-width="5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+            <polygon points="23,16 27,24 23,32 19,24" fill="#C9A020"/>
+          </svg>
+          <div class="nav-logo-text">
+            <span>WILLPOWER SOLUTIONS</span>
+            <span>DEMOLITION SERVICES</span>
+          </div>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#area">Service Area</a></li>
+        </ul>
+        <a href="tel:2398486143" class="nav-cta">(239) 848-6143</a>
+        <div class="nav-hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+    <div class="nav-mobile" id="mobileMenu">
+      <a href="#services" class="mobile-link">Services</a>
+      <a href="#projects" class="mobile-link">Projects</a>
+      <a href="#reviews" class="mobile-link">Reviews</a>
+      <a href="#area" class="mobile-link">Service Area</a>
+      <a href="tel:2398486143">&#x260E; (239) 848-6143</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-photo"></div>
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-layout">
+
+        <!-- LEFT CONTENT -->
+        <div class="hero-content">
+          <div class="hero-stars">
+            <span class="hero-stars-name">Willpower Solutions</span>
+            <span class="hero-stars-icons">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            Fort Myers, FL &mdash; Available 24 Hours
+          </div>
+          <h1 class="hero-title fade-up">
+            WILLPOWER<br>
+            <span class="accent">SOLUTIONS</span>
+          </h1>
+          <p class="hero-desc fade-up fd1">
+            Fort Myers' top-rated demolition crew. Full teardowns, concrete removal, pool demo, and site clearing — done safely, cleanly, and on time.
+          </p>
+          <div class="hero-ctas fade-up fd2">
+            <a href="#quote" class="btn-primary">
+              GET A FREE QUOTE
+            </a>
+            <a href="tel:2398486143" class="btn-outline" style="border-color:rgba(255,255,255,.5);color:#fff;">
+              <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z"/></svg>
+              (239) 848-6143
+            </a>
+          </div>
+        </div>
+
+        <!-- RIGHT FORM CARD -->
+        <div class="hero-form-card" id="quote">
+          <div class="form-eyebrow">Free Estimates &mdash; No Obligation</div>
+          <div class="form-title">GET A FREE QUOTE</div>
+          <!-- Replace YOUR_FORM_ID with Mike's Formspree ID -->
+          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <div class="form-row">
+              <div class="form-group"><input type="text" name="name" placeholder="Full Name*" required></div>
+              <div class="form-group"><input type="tel" name="phone" placeholder="Phone*" required></div>
+            </div>
+            <div class="form-group"><input type="email" name="email" placeholder="Email*" required></div>
+            <div class="form-group"><input type="text" name="city" placeholder="City"></div>
+            <div class="form-group">
+              <select name="service">
+                <option value="" disabled selected>Select a Service</option>
+                <option>Residential Demolition</option>
+                <option>Commercial Demolition</option>
+                <option>Concrete Removal</option>
+                <option>Pool Demolition</option>
+                <option>Site Clearing</option>
+                <option>Emergency Demolition</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group"><textarea name="message" placeholder="Tell us about your project..."></textarea></div>
+            <button type="submit" class="form-submit">GET MY FREE QUOTE</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <section id="trust">
+    <div class="trust-scroll">
+      <div class="trust-item"><span class="trust-icon">&#9733;</span><span class="trust-text">5.0 Stars <em>&middot; 33 Google Reviews</em></span></div>
+      <div class="trust-item"><span class="trust-icon">&#9201;</span><span class="trust-text">Open 24 Hours <em>&middot; 7 Days a Week</em></span></div>
+      <div class="trust-item"><span class="trust-icon">&#128205;</span><span class="trust-text">Fort Myers, FL <em>&middot; Southwest Florida</em></span></div>
+      <div class="trust-item"><span class="trust-icon">&#9997;</span><span class="trust-text">Free Estimates <em>&middot; Fast Response</em></span></div>
+      <div class="trust-item"><span class="trust-icon">&#128222;</span><span class="trust-text">Call Mike Direct <em>&middot; (239) 848-6143</em></span></div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <div class="services-header">
+        <span class="section-label fade-up">What We Do</span>
+        <h2 class="section-title fade-up fd1">DEMOLITION <span class="teal">SERVICES</span></h2>
+        <p class="section-sub fade-up fd2">Full-scope demolition across Southwest Florida — residential, commercial, and emergency teardowns.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card fade-up">
+          <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <div class="service-name">Residential Demolition</div>
+          <p class="service-desc">Full home teardowns, garage demolition, and interior gut-outs. Single-family homes, duplexes, and accessory structures.</p>
+        </div>
+        <div class="service-card fade-up fd1">
+          <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+          <div class="service-name">Commercial Demolition</div>
+          <p class="service-desc">Office buildings, retail spaces, warehouses, and industrial structures. Minimal disruption to surrounding properties.</p>
+        </div>
+        <div class="service-card fade-up fd2">
+          <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+          <div class="service-name">Concrete Removal</div>
+          <p class="service-desc">Driveways, slabs, foundations, sidewalks, and pool decks. We break, remove, and haul — leaving a clean workable surface.</p>
+        </div>
+        <div class="service-card fade-up fd1">
+          <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></div>
+          <div class="service-name">Site Clearing</div>
+          <p class="service-desc">Vegetation removal, land grading prep, and full debris clearance. Your lot ready for new construction from ground zero.</p>
+        </div>
+        <div class="service-card fade-up fd2">
+          <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg></div>
+          <div class="service-name">Pool Demolition</div>
+          <p class="service-desc">Full pool removal and backfill. Demolished, removed, and properly filled to meet all local code requirements.</p>
+        </div>
+        <div class="service-card fade-up fd3">
+          <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+          <div class="service-name">Emergency Demolition</div>
+          <p class="service-desc">Storm damage, structural failures, urgent teardowns. Available around the clock — we respond fast when safety is at stake.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section id="why">
+    <div class="container">
+      <div class="why-layout">
+        <div>
+          <span class="section-label fade-up">Why Willpower</span>
+          <h2 class="section-title fade-up fd1">THE WILLPOWER <span class="teal">DIFFERENCE</span></h2>
+          <p class="section-sub fade-up fd2">We don't just knock things down — we do it safely, cleanly, and with the professionalism your project deserves.</p>
+          <div class="why-points">
+            <div class="why-point fade-up"><div class="why-num">01</div><div><div class="why-point-title">Proven Track Record</div><p class="why-point-desc">A perfect 5.0-star rating across 33 Google reviews — built on showing up, doing the work, and leaving the site spotless.</p></div></div>
+            <div class="why-point fade-up fd1"><div class="why-num">02</div><div><div class="why-point-title">24/7 Emergency Availability</div><p class="why-point-desc">Emergencies don't keep business hours. We're available around the clock for storm damage, collapses, and urgent teardowns.</p></div></div>
+            <div class="why-point fade-up fd2"><div class="why-num">03</div><div><div class="why-point-title">Clean Site Guarantee</div><p class="why-point-desc">Every job ends with complete debris removal and a cleared site. No mess, no dump fees left for you.</p></div></div>
+            <div class="why-point fade-up fd3"><div class="why-num">04</div><div><div class="why-point-title">Transparent Pricing</div><p class="why-point-desc">Free estimates, no hidden fees. You know the number before work starts — no surprises on the final invoice.</p></div></div>
+            <div class="why-point fade-up fd4"><div class="why-num">05</div><div><div class="why-point-title">Safety-First Operations</div><p class="why-point-desc">Every project runs with full safety protocols — protecting your property, neighboring structures, and our crew.</p></div></div>
+            <div class="why-point fade-up fd5"><div class="why-num">06</div><div><div class="why-point-title">Local SWFL Experts</div><p class="why-point-desc">We know Lee, Collier, and Charlotte County regulations inside and out — keeping your project on schedule and compliant.</p></div></div>
+          </div>
+        </div>
+        <div class="why-right-col fade-up fd1">
+          <div class="why-cta-block">
+            <p>Ready to get started? Call Mike directly for a free estimate. We respond fast and show up ready to work.</p>
+            <a href="tel:2398486143" class="btn-primary">
+              <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z"/></svg>
+              CALL (239) 848-6143
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <div class="projects-header">
+        <div>
+          <span class="section-label fade-up">Our Work</span>
+          <h2 class="section-title fade-up fd1">RECENT <span class="teal">PROJECTS</span></h2>
+        </div>
+        <a href="#quote" class="btn-outline fade-up">START YOUR PROJECT</a>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card fade-up">
+          <img src="https://images.unsplash.com/photo-1504307651486-9d9c69fa21c0?auto=format&fit=crop&w=900&q=80" alt="Concrete demolition work Fort Myers FL" loading="lazy">
+          <div class="project-overlay">
+            <span class="project-tag">Concrete</span>
+            <div class="project-name">CONCRETE DEMOLITION</div>
+            <div class="project-loc">Fort Myers, FL</div>
+          </div>
+        </div>
+        <div class="project-card fade-up fd1">
+          <img src="https://images.unsplash.com/photo-1590496793907-2c90bf09ec37?auto=format&fit=crop&w=900&q=80" alt="Pool demolition excavation Fort Myers FL" loading="lazy">
+          <div class="project-overlay">
+            <span class="project-tag">Pool</span>
+            <div class="project-name">POOL DEMOLITION</div>
+            <div class="project-loc">Fort Myers, FL</div>
+          </div>
+        </div>
+        <div class="project-card fade-up fd2">
+          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=80" alt="Pool removal and backfill Fort Myers FL" loading="lazy">
+          <div class="project-overlay">
+            <span class="project-tag">Pool</span>
+            <div class="project-name">POOL REMOVAL &amp; BACKFILL</div>
+            <div class="project-loc">Fort Myers, FL</div>
+          </div>
+        </div>
+        <div class="project-card fade-up fd3">
+          <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=900&q=80" alt="Full structure teardown demolition Fort Myers FL" loading="lazy">
+          <div class="project-overlay">
+            <span class="project-tag">Residential</span>
+            <div class="project-name">FULL STRUCTURE TEARDOWN</div>
+            <div class="project-loc">Fort Myers, FL</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews">
+    <div class="container">
+      <div>
+        <span class="section-label fade-up">What Clients Say</span>
+        <div class="reviews-top fade-up fd1">
+          <div class="reviews-score">5.0</div>
+          <div>
+            <div class="reviews-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="reviews-count">33 Google Reviews &middot; Fort Myers, FL</div>
+          </div>
+        </div>
+        <h2 class="section-title fade-up fd2">REAL REVIEWS FROM <span class="teal">REAL CLIENTS</span></h2>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card fade-up">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">"Mike and his crew were outstanding. They showed up on time, completed the full teardown in one day, and left the lot completely clean. Couldn't ask for more professional service."</p>
+          <div class="review-footer"><div class="review-av">JR</div><div><div class="review-name">James R.</div><div class="review-date">Fort Myers, FL &middot; Google Review</div></div></div>
+        </div>
+        <div class="review-card fade-up fd1">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">"Used Willpower Solutions for a full concrete removal. Fast quote, fair price, done in a single day. The site was spotless when they left. 10/10 would call again."</p>
+          <div class="review-footer"><div class="review-av">ML</div><div><div class="review-name">Maria L.</div><div class="review-date">Cape Coral, FL &middot; Google Review</div></div></div>
+        </div>
+        <div class="review-card fade-up fd2">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">"Called for an emergency teardown after storm damage. They were out the same evening. Professional, efficient, reasonably priced. Willpower earned every bit of that 5-star rating."</p>
+          <div class="review-footer"><div class="review-av">DT</div><div><div class="review-name">David T.</div><div class="review-date">Bonita Springs, FL &middot; Google Review</div></div></div>
+        </div>
+      </div>
+      <div class="reviews-cta fade-up">
+        <a href="tel:2398486143" class="btn-outline" style="margin: 0 auto;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          View All 33 Google Reviews
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <span class="section-label fade-up">Got Questions?</span>
+      <h2 class="section-title fade-up fd1">FREQUENTLY ASKED <span class="teal">QUESTIONS</span></h2>
+      <div class="faq-layout">
+        <div class="faq-list">
+          <details class="faq-item fade-up">
+            <summary>How long does a demolition project take? <span class="faq-icon">+</span></summary>
+            <div class="faq-body">Most residential jobs are done in 1–3 days. Full structure teardowns typically take 1–2 days; concrete removal and pool demo are often completed same-day depending on scope.</div>
+          </details>
+          <details class="faq-item fade-up fd1">
+            <summary>Do you pull permits for demolition? <span class="faq-icon">+</span></summary>
+            <div class="faq-body">Yes. We handle all required permits and coordinate utility disconnections before any work begins, keeping your project fully compliant with local regulations.</div>
+          </details>
+          <details class="faq-item fade-up fd2">
+            <summary>Do you remove debris and haul it away? <span class="faq-icon">+</span></summary>
+            <div class="faq-body">Every job includes complete debris removal and site cleanup. We load, haul, and dispose of all material — leaving your property clean and ready for what's next.</div>
+          </details>
+          <details class="faq-item fade-up fd3">
+            <summary>Can you do partial or selective demolition? <span class="faq-icon">+</span></summary>
+            <div class="faq-body">Absolutely. We specialize in selective demo — removing specific walls, additions, or structures while leaving the rest of your property fully intact and undamaged.</div>
+          </details>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item fade-up">
+            <summary>How much does demolition cost? <span class="faq-icon">+</span></summary>
+            <div class="faq-body">Every project is different. We offer free, no-obligation estimates so you know the number before anything starts. Call Mike directly at (239) 848-6143 for a fast quote.</div>
+          </details>
+          <details class="faq-item fade-up fd1">
+            <summary>Are you licensed and insured? <span class="faq-icon">+</span></summary>
+            <div class="faq-body">Yes. Willpower Solutions is fully licensed and insured for all demolition and site work in Southwest Florida. We carry full liability coverage on every job.</div>
+          </details>
+          <details class="faq-item fade-up fd2">
+            <summary>What happens after a pool is demolished? <span class="faq-icon">+</span></summary>
+            <div class="faq-body">After demolition the pool is filled, compacted, and graded to solid level ground. The result is stable, buildable land ready for a patio, landscaping, or new construction.</div>
+          </details>
+          <details class="faq-item fade-up fd3">
+            <summary>Do you handle emergency or same-day jobs? <span class="faq-icon">+</span></summary>
+            <div class="faq-body">Yes. We're available 24/7 for storm damage, structural failures, and emergency teardowns. Call us any time — we respond fast and show up ready to work.</div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE AREA -->
+  <section id="area">
+    <div class="container">
+      <span class="section-label fade-up">Where We Work</span>
+      <h2 class="section-title fade-up fd1">SERVICE <span class="teal">AREA</span></h2>
+      <p class="section-sub fade-up fd2">Serving Southwest Florida — Fort Myers to Naples and beyond. Call to confirm your location.</p>
+      <div class="area-layout">
+        <div class="fade-up">
+          <div class="area-county-name">Lee County</div>
+          <div class="area-chips">
+            <span class="area-chip">Fort Myers</span><span class="area-chip">Cape Coral</span>
+            <span class="area-chip">Fort Myers Beach</span><span class="area-chip">Bonita Springs</span>
+            <span class="area-chip">Estero</span><span class="area-chip">Lehigh Acres</span>
+            <span class="area-chip">San Carlos Park</span><span class="area-chip">Iona</span>
+          </div>
+        </div>
+        <div class="fade-up fd1">
+          <div class="area-county-name">Collier County</div>
+          <div class="area-chips">
+            <span class="area-chip">Naples</span><span class="area-chip">Marco Island</span>
+            <span class="area-chip">Golden Gate</span><span class="area-chip">Immokalee</span>
+            <span class="area-chip">Ave Maria</span><span class="area-chip">Lely</span>
+          </div>
+        </div>
+        <div class="fade-up fd2">
+          <div class="area-county-name">Charlotte County</div>
+          <div class="area-chips">
+            <span class="area-chip">Port Charlotte</span><span class="area-chip">Punta Gorda</span>
+            <span class="area-chip">Englewood</span><span class="area-chip">Rotonda West</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section id="cta">
+    <div class="cta-stripe"></div>
+    <div class="container">
+      <div class="cta-inner">
+        <span class="section-label fade-up">Get a Free Estimate</span>
+        <h2 class="cta-title fade-up fd1">READY TO <span class="teal">TEAR IT DOWN?</span></h2>
+        <p class="cta-desc fade-up fd2">Fort Myers' top-rated demolition crew is one call away. We respond fast and show up ready.</p>
+        <div class="cta-btns fade-up fd3">
+          <a href="#quote" class="btn-primary">GET A FREE QUOTE</a>
+          <a href="tel:2398486143" class="btn-outline" style="border-color:rgba(255,255,255,.3);color:#fff;">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z"/></svg>
+            (239) 848-6143
+          </a>
+        </div>
+        <div class="cta-phone fade-up fd4">(239) 848-6143</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="nav-logo">
+            <svg width="40" height="38" viewBox="0 0 46 44" fill="none">
+              <polyline points="2,30 23,10 44,30" stroke="#C9A020" stroke-width="5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+              <polyline points="2,18 23,38 44,18" stroke="#00897B" stroke-width="5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+              <polygon points="23,16 27,24 23,32 19,24" fill="#C9A020"/>
+            </svg>
+            <div class="nav-logo-text"><span>WILLPOWER SOLUTIONS</span><span>DEMOLITION SERVICES</span></div>
+          </div>
+          <p class="footer-desc">Fort Myers' trusted demolition professionals. Serving Lee, Collier, and Charlotte counties across Southwest Florida.</p>
+        </div>
+        <div>
+          <div class="footer-heading">Quick Links</div>
+          <ul class="footer-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#why">Why Choose Us</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#area">Service Area</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Contact</div>
+          <div class="footer-ci">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.06 6.06l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href="tel:2398486143">(239) 848-6143</a>
+          </div>
+          <div class="footer-ci">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Fort Myers, FL</span>
+          </div>
+          <div class="footer-ci">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Open 24 Hours</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">&copy; 2026 Willpower Solutions. All rights reserved.</span>
+        <span class="footer-copy">Fort Myers, FL &middot; (239) 848-6143</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+    document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    document.querySelectorAll('#hero .fade-up').forEach(el => setTimeout(() => el.classList.add('visible'), 80));
+  </script>
+</body>
+</html>
