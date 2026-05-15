@@ -8,10 +8,10 @@
 ========================================================
   PHOTOS TO ADD FROM MIKE (drop into /images/ folder):
   ─────────────────────────────────────────────────────
-  1. project-1.jpg  → Concrete demolition job
-  2. project-2.jpg  → Pool demolition
-  3. project-3.jpg  → Pool removal / backfill
-  4. project-4.jpg  → Full structure teardown
+  1. project-1.jpg  → Full home teardown
+  2. project-2.jpg  → Concrete / driveway removal
+  3. project-3.jpg  → Pool demolition
+  4. project-4.jpg  → Site clearing / commercial
   5. logo.png       → High-res logo (transparent bg)
   ─────────────────────────────────────────────────────
   OTHER ASSETS TO REQUEST FROM MIKE:
@@ -82,8 +82,14 @@
     .btn-outline { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--teal); font-weight: 600; font-size: 14px; letter-spacing: .5px; padding: 14px 30px; border: 2px solid var(--teal); cursor: pointer; transition: background .2s, color .2s; }
     .btn-outline:hover { background: var(--teal); color: #fff; }
 
-    /* NAV */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,.97); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); transition: box-shadow .3s; }
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(255,255,255,.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow .3s;
+    }
     nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,.08); }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
     .nav-logo { display: flex; align-items: center; gap: 12px; }
@@ -91,7 +97,7 @@
     .nav-logo-text span:first-child { font-family: 'Bebas Neue', sans-serif; font-size: 19px; letter-spacing: 2px; color: var(--teal); }
     .nav-logo-text span:last-child { font-size: 9px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; }
     .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
-    .nav-links a { font-size: 13px; font-weight: 500; color: #444; transition: color .2s; }
+    .nav-links a { font-size: 13px; font-weight: 500; letter-spacing: .3px; color: #444; transition: color .2s; }
     .nav-links a:hover { color: var(--teal); }
     .nav-cta { background: var(--teal); color: #fff; font-weight: 700; font-size: 13px; padding: 10px 22px; transition: background .2s; }
     .nav-cta:hover { background: var(--teal-dark); }
@@ -102,14 +108,36 @@
     .nav-mobile a { display: block; padding: 12px 0; font-size: 16px; font-weight: 500; color: #333; border-bottom: 1px solid var(--border); }
     .nav-mobile a:last-child { border-bottom: none; color: var(--teal); font-weight: 700; }
 
-    /* HERO */
-    #hero { min-height: 100vh; display: flex; align-items: center; background: #fff; padding-top: 72px; position: relative; overflow: hidden; }
-    .hero-bg-line { position: absolute; top: 0; right: 0; width: 45%; height: 100%; background: var(--light); clip-path: polygon(12% 0, 100% 0, 100% 100%, 0 100%); }
-    .hero-accent-bar { position: absolute; top: 0; right: 45%; width: 4px; height: 100%; background: linear-gradient(to bottom, var(--gold), var(--teal)); opacity: .25; }
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh; display: flex; align-items: center;
+      background: #fff;
+      padding-top: 72px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg-line {
+      position: absolute; top: 0; right: 0; width: 45%; height: 100%;
+      background: var(--light);
+      clip-path: polygon(12% 0, 100% 0, 100% 100%, 0 100%);
+    }
+    .hero-accent-bar {
+      position: absolute; top: 0; right: 45%; width: 4px; height: 100%;
+      background: linear-gradient(to bottom, var(--gold), var(--teal));
+      opacity: .25;
+    }
     .hero-content { position: relative; z-index: 2; padding: 80px 0; max-width: 680px; }
-    .hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 700; letter-spacing: 3px; color: var(--teal); text-transform: uppercase; margin-bottom: 24px; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 11px; font-weight: 700; letter-spacing: 3px;
+      color: var(--teal); text-transform: uppercase; margin-bottom: 24px;
+    }
     .hero-eyebrow-dot { width: 6px; height: 6px; background: var(--gold); }
-    .hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(60px, 9vw, 114px); line-height: .93; margin-bottom: 24px; color: var(--black); }
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(60px, 9vw, 114px);
+      line-height: .93; margin-bottom: 24px; color: var(--black);
+    }
     .hero-title .accent { color: var(--teal); }
     .hero-title .gold { color: var(--gold); }
     .hero-desc { font-size: 18px; color: var(--gray); max-width: 500px; margin-bottom: 36px; line-height: 1.7; }
@@ -118,55 +146,96 @@
     .hero-stat-val { font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: var(--teal); line-height: 1; }
     .hero-stat-lbl { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; color: #999; text-transform: uppercase; margin-top: 3px; }
 
-    /* TRUST BAR */
-    #trust { background: var(--black); padding: 0; border-top: 3px solid var(--gold); }
+    /* ─── TRUST BAR ─── */
+    #trust {
+      background: var(--black); padding: 0;
+      border-top: 3px solid var(--gold);
+    }
     .trust-scroll { display: flex; overflow-x: auto; }
     .trust-scroll::-webkit-scrollbar { display: none; }
-    .trust-item { display: flex; align-items: center; gap: 10px; padding: 18px 36px; border-right: 1px solid rgba(255,255,255,.1); white-space: nowrap; flex-shrink: 0; }
+    .trust-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 18px 36px; border-right: 1px solid rgba(255,255,255,.1);
+      white-space: nowrap; flex-shrink: 0;
+    }
     .trust-item:last-child { border-right: none; }
     .trust-icon { color: var(--gold); font-size: 18px; }
-    .trust-text { font-size: 13px; font-weight: 600; color: #fff; }
+    .trust-text { font-size: 13px; font-weight: 600; color: #fff; letter-spacing: .3px; }
     .trust-text em { font-style: normal; color: rgba(255,255,255,.5); font-weight: 400; }
 
-    /* SERVICES */
+    /* ─── SERVICES ─── */
     #services { padding: 100px 0; background: #fff; }
     .services-header { margin-bottom: 56px; }
     .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-    .service-card { background: #fff; padding: 40px 32px; position: relative; overflow: hidden; transition: background .2s; }
+    .service-card {
+      background: #fff; padding: 40px 32px;
+      position: relative; overflow: hidden;
+      transition: background .2s;
+    }
     .service-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 3px; background: var(--teal); transition: width .3s; }
     .service-card:hover { background: var(--light); }
     .service-card:hover::after { width: 100%; }
-    .service-icon { width: 48px; height: 48px; border: 1.5px solid var(--teal); display: flex; align-items: center; justify-content: center; color: var(--teal); margin-bottom: 22px; }
+    .service-icon {
+      width: 48px; height: 48px;
+      border: 1.5px solid var(--teal);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--teal); margin-bottom: 22px;
+    }
     .service-name { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; margin-bottom: 10px; color: var(--black); }
     .service-desc { font-size: 14px; color: var(--gray); line-height: 1.7; }
 
-    /* WHY */
+    /* ─── WHY ─── */
     #why { padding: 100px 0; background: var(--light); }
     .why-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
     .why-points { display: flex; flex-direction: column; gap: 28px; margin-top: 36px; }
     .why-point { display: flex; gap: 18px; align-items: flex-start; }
-    .why-num { min-width: 36px; height: 36px; background: var(--teal); color: #fff; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 16px; flex-shrink: 0; }
+    .why-num {
+      min-width: 36px; height: 36px;
+      background: var(--teal); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif; font-size: 16px; flex-shrink: 0;
+    }
     .why-point-title { font-weight: 700; font-size: 15px; margin-bottom: 4px; color: var(--black); }
     .why-point-desc { font-size: 13px; color: var(--gray); line-height: 1.65; }
     .why-right-col { padding-top: 16px; }
-    .why-cta-block { background: var(--white); border: 1px solid var(--border); padding: 36px; margin-top: 40px; border-left: 4px solid var(--gold); }
+    .why-cta-block {
+      background: var(--white); border: 1px solid var(--border);
+      padding: 36px; margin-top: 40px;
+      border-left: 4px solid var(--gold);
+    }
     .why-cta-block p { font-size: 16px; color: var(--gray); line-height: 1.7; margin-bottom: 24px; }
 
-    /* PROJECTS */
+    /* ─── PROJECTS ─── */
     #projects { padding: 100px 0; background: #fff; }
     .projects-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 40px; flex-wrap: wrap; gap: 20px; }
     .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3px; }
-    .project-card { position: relative; overflow: hidden; aspect-ratio: 16/10; background: var(--light); }
-    .project-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+    .project-card {
+      position: relative; overflow: hidden;
+      aspect-ratio: 16/10;
+      background: var(--light);
+    }
+    .project-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s ease;
+    }
     .project-card:hover img { transform: scale(1.04); }
-    .project-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 24px; background: linear-gradient(transparent, rgba(0,0,0,.75)); }
-    .project-tag { display: inline-block; background: var(--teal); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 3px 9px; margin-bottom: 6px; }
+    .project-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 20px 24px;
+      background: linear-gradient(transparent, rgba(0,0,0,.75));
+    }
+    .project-tag {
+      display: inline-block; background: var(--teal);
+      color: #fff; font-size: 10px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 3px 9px; margin-bottom: 6px;
+    }
     .project-name { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: #fff; letter-spacing: 1px; }
     .project-loc { font-size: 12px; color: rgba(255,255,255,.65); margin-top: 2px; }
-    .project-no-img { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px; background: #EBEBEB; color: #aaa; font-size: 13px; text-align: center; }
-    .project-no-img svg { opacity: .35; }
 
-    /* REVIEWS */
+    /* ─── REVIEWS ─── */
     #reviews { padding: 100px 0; background: var(--light); }
     .reviews-top { display: flex; align-items: center; gap: 24px; margin-bottom: 16px; flex-wrap: wrap; }
     .reviews-score { font-family: 'Bebas Neue', sans-serif; font-size: 72px; color: var(--black); line-height: 1; }
@@ -182,15 +251,16 @@
     .review-date { font-size: 11px; color: #aaa; margin-top: 2px; }
     .reviews-cta { text-align: center; margin-top: 36px; }
 
-    /* AREA */
+    /* ─── AREA ─── */
     #area { padding: 100px 0; background: #fff; }
     .area-layout { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 48px; }
+    .area-county { }
     .area-county-name { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; color: var(--black); border-bottom: 2px solid var(--teal); padding-bottom: 10px; margin-bottom: 16px; }
     .area-chips { display: flex; flex-wrap: wrap; gap: 7px; }
     .area-chip { background: var(--light); border: 1px solid var(--border); padding: 6px 14px; font-size: 13px; color: #555; transition: background .2s, color .2s, border-color .2s; }
     .area-chip:hover { background: var(--teal); color: #fff; border-color: var(--teal); }
 
-    /* CTA */
+    /* ─── FINAL CTA ─── */
     #cta { padding: 100px 0; background: var(--black); position: relative; overflow: hidden; }
     .cta-stripe { position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--gold), var(--teal)); }
     .cta-inner { text-align: center; max-width: 680px; margin: 0 auto; position: relative; z-index: 2; }
@@ -200,7 +270,7 @@
     .cta-btns { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-bottom: 36px; }
     .cta-phone { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--gold); letter-spacing: 2px; }
 
-    /* FOOTER */
+    /* ─── FOOTER ─── */
     footer { background: #0a0a0a; border-top: 1px solid rgba(255,255,255,.07); padding: 60px 0 32px; }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; margin-bottom: 48px; }
     .footer-desc { font-size: 14px; color: rgba(255,255,255,.45); line-height: 1.7; margin-top: 16px; max-width: 300px; }
@@ -213,13 +283,13 @@
     .footer-bottom { border-top: 1px solid rgba(255,255,255,.07); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
     .footer-copy { font-size: 12px; color: rgba(255,255,255,.25); }
 
-    /* ANIMATIONS */
+    /* ─── ANIMATIONS ─── */
     .fade-up { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
     .fd1 { transition-delay: .1s; } .fd2 { transition-delay: .2s; } .fd3 { transition-delay: .3s; }
     .fd4 { transition-delay: .4s; } .fd5 { transition-delay: .5s; }
 
-    /* RESPONSIVE */
+    /* ─── RESPONSIVE ─── */
     @media (max-width: 1024px) {
       .services-grid { grid-template-columns: repeat(2, 1fr); }
       .why-layout { grid-template-columns: 1fr; gap: 40px; }
@@ -246,10 +316,12 @@
 </head>
 <body>
 
+  <!-- NAV -->
   <nav id="navbar">
     <div class="container">
       <div class="nav-inner">
         <a href="#hero" class="nav-logo">
+          <!-- Logo matching Willpower Solutions business card: up-chevron gold + down-chevron teal + bolt -->
           <svg width="46" height="44" viewBox="0 0 46 44" fill="none" xmlns="http://www.w3.org/2000/svg">
             <polyline points="2,30 23,10 44,30" stroke="#C9A020" stroke-width="5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
             <polyline points="2,18 23,38 44,18" stroke="#00897B" stroke-width="5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
@@ -267,7 +339,9 @@
           <li><a href="#area">Service Area</a></li>
         </ul>
         <a href="tel:2398486143" class="nav-cta">CALL NOW</a>
-        <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        <div class="nav-hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </div>
       </div>
     </div>
     <div class="nav-mobile" id="mobileMenu">
@@ -279,6 +353,7 @@
     </div>
   </nav>
 
+  <!-- HERO -->
   <section id="hero">
     <div class="hero-bg-line"></div>
     <div class="hero-accent-bar"></div>
@@ -293,7 +368,9 @@
           DONE<br>
           <span class="gold">RIGHT.</span>
         </h1>
-        <p class="hero-desc fade-up fd2">Fort Myers' top-rated demolition crew. From full structure teardowns to concrete removal and site clearing — we bring the willpower to get it done.</p>
+        <p class="hero-desc fade-up fd2">
+          Fort Myers' top-rated demolition crew. From full structure teardowns to concrete removal and site clearing — we bring the willpower to get it done.
+        </p>
         <div class="hero-ctas fade-up fd3">
           <a href="tel:2398486143" class="btn-primary">
             <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z"/></svg>
@@ -302,15 +379,28 @@
           <a href="#services" class="btn-outline">VIEW SERVICES</a>
         </div>
         <div class="hero-stats fade-up fd4">
-          <div><div class="hero-stat-val">5.0&#9733;</div><div class="hero-stat-lbl">Google Rating</div></div>
-          <div><div class="hero-stat-val">33</div><div class="hero-stat-lbl">Reviews</div></div>
-          <div><div class="hero-stat-val">24/7</div><div class="hero-stat-lbl">Available</div></div>
-          <div><div class="hero-stat-val">SWFL</div><div class="hero-stat-lbl">Service Area</div></div>
+          <div>
+            <div class="hero-stat-val">5.0&#9733;</div>
+            <div class="hero-stat-lbl">Google Rating</div>
+          </div>
+          <div>
+            <div class="hero-stat-val">33</div>
+            <div class="hero-stat-lbl">Reviews</div>
+          </div>
+          <div>
+            <div class="hero-stat-val">24/7</div>
+            <div class="hero-stat-lbl">Available</div>
+          </div>
+          <div>
+            <div class="hero-stat-val">SWFL</div>
+            <div class="hero-stat-lbl">Service Area</div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- TRUST BAR -->
   <section id="trust">
     <div class="trust-scroll">
       <div class="trust-item"><span class="trust-icon">&#9733;</span><span class="trust-text">5.0 Stars <em>&middot; 33 Google Reviews</em></span></div>
@@ -320,6 +410,7 @@
     </div>
   </section>
 
+  <!-- SERVICES -->
   <section id="services">
     <div class="container">
       <div class="services-header">
@@ -362,6 +453,7 @@
     </div>
   </section>
 
+  <!-- WHY CHOOSE US -->
   <section id="why">
     <div class="container">
       <div class="why-layout">
@@ -371,7 +463,7 @@
           <p class="section-sub fade-up fd2">We don't just knock things down — we do it safely, cleanly, and with the professionalism your project deserves.</p>
           <div class="why-points">
             <div class="why-point fade-up"><div class="why-num">01</div><div><div class="why-point-title">Proven Track Record</div><p class="why-point-desc">A perfect 5.0-star rating across 33 Google reviews — built on showing up, doing the work, and leaving the site spotless.</p></div></div>
-            <div class="why-point fade-up fd1"><div class="why-num">02</div><div><div class="why-point-title">24/7 Emergency Availability</div><p class="why-point-desc">Emergencies don't keep business hours. Available around the clock for storm damage, collapses, and urgent teardowns.</p></div></div>
+            <div class="why-point fade-up fd1"><div class="why-num">02</div><div><div class="why-point-title">24/7 Emergency Availability</div><p class="why-point-desc">Emergencies don't keep business hours. We're available around the clock for storm damage, collapses, and urgent teardowns.</p></div></div>
             <div class="why-point fade-up fd2"><div class="why-num">03</div><div><div class="why-point-title">Clean Site Guarantee</div><p class="why-point-desc">Every job ends with complete debris removal and a cleared site. No mess, no dump fees left for you.</p></div></div>
             <div class="why-point fade-up fd3"><div class="why-num">04</div><div><div class="why-point-title">Transparent Pricing</div><p class="why-point-desc">Free estimates, no hidden fees. You know the number before work starts — no surprises on the final invoice.</p></div></div>
             <div class="why-point fade-up fd4"><div class="why-num">05</div><div><div class="why-point-title">Safety-First Operations</div><p class="why-point-desc">Every project runs with full safety protocols — protecting your property, neighboring structures, and our crew.</p></div></div>
@@ -391,6 +483,7 @@
     </div>
   </section>
 
+  <!-- PROJECTS -->
   <section id="projects">
     <div class="container">
       <div class="projects-header">
@@ -402,48 +495,55 @@
       </div>
       <div class="projects-grid">
         <div class="project-card fade-up">
-          <div class="project-no-img">
-            <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-            <span>Add project-1.jpg</span>
+          <img src="https://images.unsplash.com/photo-1504307651486-9d9c69fa21c0?auto=format&fit=crop&w=900&q=80" alt="Concrete demolition work Fort Myers FL" loading="lazy">
+          <div class="project-overlay">
+            <span class="project-tag">Concrete</span>
+            <div class="project-name">CONCRETE DEMOLITION</div>
+            <div class="project-loc">Fort Myers, FL</div>
           </div>
-          <div class="project-overlay"><span class="project-tag">Concrete</span><div class="project-name">CONCRETE DEMOLITION</div><div class="project-loc">Fort Myers, FL</div></div>
         </div>
         <div class="project-card fade-up fd1">
-          <div class="project-no-img">
-            <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-            <span>Add project-2.jpg</span>
+          <img src="https://images.unsplash.com/photo-1590496793907-2c90bf09ec37?auto=format&fit=crop&w=900&q=80" alt="Pool demolition excavation Fort Myers FL" loading="lazy">
+          <div class="project-overlay">
+            <span class="project-tag">Pool</span>
+            <div class="project-name">POOL DEMOLITION</div>
+            <div class="project-loc">Fort Myers, FL</div>
           </div>
-          <div class="project-overlay"><span class="project-tag">Pool</span><div class="project-name">POOL DEMOLITION</div><div class="project-loc">Fort Myers, FL</div></div>
         </div>
         <div class="project-card fade-up fd2">
-          <div class="project-no-img">
-            <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-            <span>Add project-3.jpg</span>
+          <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=900&q=80" alt="Pool removal and backfill Fort Myers FL" loading="lazy">
+          <div class="project-overlay">
+            <span class="project-tag">Pool</span>
+            <div class="project-name">POOL REMOVAL &amp; BACKFILL</div>
+            <div class="project-loc">Fort Myers, FL</div>
           </div>
-          <div class="project-overlay"><span class="project-tag">Pool</span><div class="project-name">POOL REMOVAL &amp; BACKFILL</div><div class="project-loc">Fort Myers, FL</div></div>
         </div>
         <div class="project-card fade-up fd3">
-          <div class="project-no-img">
-            <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-            <span>Add project-4.jpg</span>
+          <img src="https://images.unsplash.com/photo-1512207736890-e2d44d1bcd56?auto=format&fit=crop&w=900&q=80" alt="Full structure teardown demolition Fort Myers FL" loading="lazy">
+          <div class="project-overlay">
+            <span class="project-tag">Residential</span>
+            <div class="project-name">FULL STRUCTURE TEARDOWN</div>
+            <div class="project-loc">Fort Myers, FL</div>
           </div>
-          <div class="project-overlay"><span class="project-tag">Residential</span><div class="project-name">FULL STRUCTURE TEARDOWN</div><div class="project-loc">Fort Myers, FL</div></div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- REVIEWS -->
   <section id="reviews">
     <div class="container">
-      <span class="section-label fade-up">What Clients Say</span>
-      <div class="reviews-top fade-up fd1">
-        <div class="reviews-score">5.0</div>
-        <div>
-          <div class="reviews-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <div class="reviews-count">33 Google Reviews &middot; Fort Myers, FL</div>
+      <div>
+        <span class="section-label fade-up">What Clients Say</span>
+        <div class="reviews-top fade-up fd1">
+          <div class="reviews-score">5.0</div>
+          <div>
+            <div class="reviews-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="reviews-count">33 Google Reviews &middot; Fort Myers, FL</div>
+          </div>
         </div>
+        <h2 class="section-title fade-up fd2">REAL REVIEWS FROM <span class="teal">REAL CLIENTS</span></h2>
       </div>
-      <h2 class="section-title fade-up fd2">REAL REVIEWS FROM <span class="teal">REAL CLIENTS</span></h2>
       <div class="reviews-grid">
         <div class="review-card fade-up">
           <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
@@ -462,36 +562,50 @@
         </div>
       </div>
       <div class="reviews-cta fade-up">
-        <a href="tel:2398486143" class="btn-outline" style="margin:0 auto;">
-          <svg width="14" height="14" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        <a href="tel:2398486143" class="btn-outline" style="margin: 0 auto;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
           View All 33 Google Reviews
         </a>
       </div>
     </div>
   </section>
 
+  <!-- SERVICE AREA -->
   <section id="area">
     <div class="container">
       <span class="section-label fade-up">Where We Work</span>
       <h2 class="section-title fade-up fd1">SERVICE <span class="teal">AREA</span></h2>
       <p class="section-sub fade-up fd2">Serving Southwest Florida — Fort Myers to Naples and beyond. Call to confirm your location.</p>
       <div class="area-layout">
-        <div class="fade-up">
+        <div class="area-county fade-up">
           <div class="area-county-name">Lee County</div>
-          <div class="area-chips"><span class="area-chip">Fort Myers</span><span class="area-chip">Cape Coral</span><span class="area-chip">Fort Myers Beach</span><span class="area-chip">Bonita Springs</span><span class="area-chip">Estero</span><span class="area-chip">Lehigh Acres</span><span class="area-chip">San Carlos Park</span><span class="area-chip">Iona</span></div>
+          <div class="area-chips">
+            <span class="area-chip">Fort Myers</span><span class="area-chip">Cape Coral</span>
+            <span class="area-chip">Fort Myers Beach</span><span class="area-chip">Bonita Springs</span>
+            <span class="area-chip">Estero</span><span class="area-chip">Lehigh Acres</span>
+            <span class="area-chip">San Carlos Park</span><span class="area-chip">Iona</span>
+          </div>
         </div>
-        <div class="fade-up fd1">
+        <div class="area-county fade-up fd1">
           <div class="area-county-name">Collier County</div>
-          <div class="area-chips"><span class="area-chip">Naples</span><span class="area-chip">Marco Island</span><span class="area-chip">Golden Gate</span><span class="area-chip">Immokalee</span><span class="area-chip">Ave Maria</span><span class="area-chip">Lely</span></div>
+          <div class="area-chips">
+            <span class="area-chip">Naples</span><span class="area-chip">Marco Island</span>
+            <span class="area-chip">Golden Gate</span><span class="area-chip">Immokalee</span>
+            <span class="area-chip">Ave Maria</span><span class="area-chip">Lely</span>
+          </div>
         </div>
-        <div class="fade-up fd2">
+        <div class="area-county fade-up fd2">
           <div class="area-county-name">Charlotte County</div>
-          <div class="area-chips"><span class="area-chip">Port Charlotte</span><span class="area-chip">Punta Gorda</span><span class="area-chip">Englewood</span><span class="area-chip">Rotonda West</span></div>
+          <div class="area-chips">
+            <span class="area-chip">Port Charlotte</span><span class="area-chip">Punta Gorda</span>
+            <span class="area-chip">Englewood</span><span class="area-chip">Rotonda West</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- FINAL CTA -->
   <section id="cta">
     <div class="cta-stripe"></div>
     <div class="container">
@@ -511,6 +625,7 @@
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     <div class="container">
       <div class="footer-grid">
@@ -537,9 +652,18 @@
         </div>
         <div>
           <div class="footer-heading">Contact</div>
-          <div class="footer-ci"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.06 6.06l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:2398486143">(239) 848-6143</a></div>
-          <div class="footer-ci"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Fort Myers, FL</span></div>
-          <div class="footer-ci"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>Open 24 Hours</span></div>
+          <div class="footer-ci">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.06 6.06l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href="tel:2398486143">(239) 848-6143</a>
+          </div>
+          <div class="footer-ci">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Fort Myers, FL</span>
+          </div>
+          <div class="footer-ci">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Open 24 Hours</span>
+          </div>
         </div>
       </div>
       <div class="footer-bottom">
@@ -554,8 +678,10 @@
     const mobileMenu = document.getElementById('mobileMenu');
     hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
     document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
     const nav = document.getElementById('navbar');
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
     }, { threshold: 0.1 });
