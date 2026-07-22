@@ -385,6 +385,31 @@
       .cta-btns { flex-direction: column; }
       .slide-title { font-size: 54px; }
     }
+    /* ─── PAGE ROUTING ─── */
+    body.wp-paged #main-home { display: none; }
+    .wp-page { display: none; opacity: 0; transform: translateX(52px); transition: opacity .36s ease, transform .36s ease; }
+    .wp-page.wp-active { display: block; opacity: 1; transform: translateX(0); }
+    .pg-hero { padding: calc(var(--ann-h) + var(--nav-h) + 72px) 0 72px; background: #0a0a0a; position: relative; overflow: hidden; }
+    .pg-hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,180,160,.13) 0%, transparent 60%); pointer-events: none; }
+    .pg-hero-inner { position: relative; z-index: 1; }
+    .pg-eyebrow { font-size: 11px; font-weight: 800; letter-spacing: 3.5px; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 14px; }
+    .pg-h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(52px, 7vw, 96px); color: #fff; line-height: 1; letter-spacing: 1px; margin-bottom: 20px; }
+    .pg-h1 .teal { color: var(--teal); }
+    .pg-sub { font-size: 17px; color: rgba(255,255,255,.6); max-width: 520px; line-height: 1.7; }
+    .pg-section { padding: 90px 0; }
+    .pg-alt { background: var(--light); }
+    .pg-cta-band { background: #0a0a0a; padding: 80px 0; text-align: center; }
+    .pg-cta-band h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 5vw, 68px); color: #fff; margin-bottom: 14px; }
+    .pg-cta-band p { color: rgba(255,255,255,.55); font-size: 16px; margin-bottom: 32px; max-width: 400px; margin-left: auto; margin-right: auto; }
+    .pg-projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+    .cpage-layout { display: grid; grid-template-columns: 1fr 480px; gap: 80px; align-items: start; }
+    .cpage-info-item { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 36px; }
+    .cpage-info-icon { width: 48px; height: 48px; flex-shrink: 0; border: 2px solid var(--teal); display: flex; align-items: center; justify-content: center; color: var(--teal); }
+    .cpage-info-label { font-size: 10px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gray); margin-bottom: 5px; }
+    .cpage-info-val { font-size: 17px; font-weight: 700; color: var(--black); }
+    .cpage-info-val a { color: var(--teal); text-decoration: none; }
+    @media(max-width:900px){.pg-projects-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:640px){.pg-projects-grid{grid-template-columns:1fr}.cpage-layout{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -420,11 +445,11 @@
           </div>
         </a>
         <ul class="nav-links">
-          <li><a href="#services">Services</a></li>
-          <li><a href="#projects">Projects</a></li>
+          <li><a href="#" data-page="services">Services</a></li>
+          <li><a href="#" data-page="projects">Projects</a></li>
           <li><a href="#reviews">Reviews</a></li>
           <li><a href="#area">Service Area</a></li>
-          <li><a href="#quote" class="nav-cta">REQUEST A QUOTE</a></li>
+          <li><a href="#" data-page="contact" class="nav-cta">REQUEST A QUOTE</a></li>
         </ul>
         <div class="nav-hamburger" id="hamburger">
           <span></span><span></span><span></span>
@@ -432,15 +457,17 @@
       </div>
     </div>
     <div class="nav-mobile" id="mobileMenu">
-      <a href="#services" class="mobile-link">Services</a>
-      <a href="#projects" class="mobile-link">Projects</a>
+      <a href="#" class="mobile-link" data-page="services">Services</a>
+      <a href="#" class="mobile-link" data-page="projects">Projects</a>
       <a href="#reviews" class="mobile-link">Reviews</a>
       <a href="#area" class="mobile-link">Service Area</a>
+      <a href="#" class="mobile-link" data-page="contact">Request a Quote</a>
       <a href="#quote" class="mobile-link">Request a Quote</a>
       <a href="tel:2398486143">&#x260E; (239) 848-6143</a>
     </div>
   </nav>
 
+  <div id="main-home">
   <!-- HERO SLIDER -->
   <section id="hero">
     <div class="hero-slider">
@@ -701,7 +728,7 @@
       </div>
       <div class="projects-grid">
         <div class="project-card fade-up">
-          <img src="https://images.unsplash.com/photo-1504307651486-9d9c69fa21c0?auto=format&fit=crop&w=900&q=80" alt="Concrete demolition work Fort Myers FL" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1677588508537-5106322c2d40?auto=format&fit=crop&w=900&q=80" alt="Concrete demolition work Fort Myers FL" loading="lazy">
           <div class="project-overlay">
             <span class="project-tag">Concrete</span>
             <div class="project-name">CONCRETE DEMOLITION</div>
@@ -709,7 +736,7 @@
           </div>
         </div>
         <div class="project-card fade-up fd1">
-          <img src="https://images.unsplash.com/photo-1590496793907-2c90bf09ec37?auto=format&fit=crop&w=900&q=80" alt="Interior gut-out demolition Fort Myers FL" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1711618732595-0c517e08d40c?auto=format&fit=crop&w=900&q=80" alt="Interior gut-out demolition Fort Myers FL" loading="lazy">
           <div class="project-overlay">
             <span class="project-tag">Interior</span>
             <div class="project-name">INTERIOR GUT-OUT</div>
@@ -717,7 +744,7 @@
           </div>
         </div>
         <div class="project-card fade-up fd2">
-          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=80" alt="Tile removal demolition Fort Myers FL" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1616551569669-b60598758c4f?auto=format&fit=crop&w=900&q=80" alt="Tile removal demolition Fort Myers FL" loading="lazy">
           <div class="project-overlay">
             <span class="project-tag">Tile</span>
             <div class="project-name">TILE REMOVAL</div>
@@ -897,7 +924,7 @@
           <ul class="footer-links">
             <li><a href="#services">Services</a></li>
             <li><a href="#why">Why Choose Us</a></li>
-            <li><a href="#projects">Projects</a></li>
+            <li><a href="#" data-page="projects">Projects</a></li>
             <li><a href="#reviews">Reviews</a></li>
             <li><a href="#area">Service Area</a></li>
           </ul>
@@ -924,6 +951,154 @@
       </div>
     </div>
   </footer>
+  </div><!-- /#main-home -->
+
+  <!-- ═══ SERVICES PAGE ═══ -->
+  <div id="page-services" class="wp-page">
+    <div class="pg-hero">
+      <div class="container pg-hero-inner">
+        <span class="pg-eyebrow">What We Do</span>
+        <h1 class="pg-h1">OUR <span class="teal">SERVICES</span></h1>
+        <p class="pg-sub">Full-service demolition across Southwest Florida — clean, fast, and ready for your next phase.</p>
+      </div>
+    </div>
+    <section class="pg-section">
+      <div class="container">
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+            <div class="service-name">Residential Demolition</div>
+            <p class="service-desc">Full home teardowns, garage demolition, and interior gut-outs. Single-family homes, duplexes, and accessory structures.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 21V9"/></svg></div>
+            <div class="service-name">Interior Gut-Outs</div>
+            <p class="service-desc">Full bathroom, kitchen, and room demolitions. We strip it down to the studs — clean, fast, and ready for your contractor.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="1"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
+            <div class="service-name">Tile Removal</div>
+            <p class="service-desc">Floor tile, wall tile, and mortar bed removal. Clean removal without damaging the substrate beneath.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+            <div class="service-name">Condo Renovation Demo</div>
+            <p class="service-desc">Condo and apartment interior teardowns. We work within building requirements and leave the unit clean and ready.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+            <div class="service-name">Concrete Removal</div>
+            <p class="service-desc">Driveways, slabs, sidewalks, and foundations. We break, remove, and haul — leaving a clean, workable surface.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+            <div class="service-name">Site Cleanup</div>
+            <p class="service-desc">Full debris removal and site restoration after demo work. We haul everything out and leave it broom-clean.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="pg-cta-band">
+      <div class="container">
+        <h2>READY TO <span style="color:var(--teal)">GET STARTED?</span></h2>
+        <p>Call Mike directly or submit a quote request — we respond same day.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+          <a href="tel:2398486143" class="btn-primary"><svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z"/></svg>CALL (239) 848-6143</a>
+          <a href="#" data-page="contact" class="btn-outline" style="border-color:rgba(255,255,255,.4);color:#fff">GET A FREE QUOTE</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PROJECTS PAGE ═══ -->
+  <div id="page-projects" class="wp-page">
+    <div class="pg-hero">
+      <div class="container pg-hero-inner">
+        <span class="pg-eyebrow">Our Work</span>
+        <h1 class="pg-h1">PROJECT <span class="teal">GALLERY</span></h1>
+        <p class="pg-sub">Every job done right. Browse a sample of our demolition and removal work across Southwest Florida.</p>
+      </div>
+    </div>
+    <section class="pg-section pg-alt">
+      <div class="container">
+        <div class="pg-projects-grid">
+          <div class="project-card"><img src="https://images.unsplash.com/photo-1677588508537-5106322c2d40?auto=format&fit=crop&w=800&q=80" alt="Concrete demolition" loading="lazy"><div class="project-overlay"><span class="project-tag">Concrete</span><div class="project-name">CONCRETE DEMOLITION</div><div class="project-loc">Fort Myers, FL</div></div></div>
+          <div class="project-card"><img src="https://images.unsplash.com/photo-1711618732595-0c517e08d40c?auto=format&fit=crop&w=800&q=80" alt="Interior gut-out" loading="lazy"><div class="project-overlay"><span class="project-tag">Interior</span><div class="project-name">INTERIOR GUT-OUT</div><div class="project-loc">Fort Myers, FL</div></div></div>
+          <div class="project-card"><img src="https://images.unsplash.com/photo-1616551569669-b60598758c4f?auto=format&fit=crop&w=800&q=80" alt="Tile removal" loading="lazy"><div class="project-overlay"><span class="project-tag">Tile</span><div class="project-name">TILE REMOVAL</div><div class="project-loc">Cape Coral, FL</div></div></div>
+          <div class="project-card"><img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80" alt="Full structure teardown" loading="lazy"><div class="project-overlay"><span class="project-tag">Residential</span><div class="project-name">FULL STRUCTURE TEARDOWN</div><div class="project-loc">Naples, FL</div></div></div>
+          <div class="project-card"><img src="https://images.unsplash.com/photo-1594155840350-fac3cc4b6816?auto=format&fit=crop&w=800&q=80" alt="Garage demolition" loading="lazy"><div class="project-overlay"><span class="project-tag">Garage</span><div class="project-name">GARAGE DEMOLITION</div><div class="project-loc">Bonita Springs, FL</div></div></div>
+          <div class="project-card"><img src="https://images.unsplash.com/photo-1599732596061-1f381074f115?auto=format&fit=crop&w=800&q=80" alt="Commercial site cleanup" loading="lazy"><div class="project-overlay"><span class="project-tag">Commercial</span><div class="project-name">COMMERCIAL SITE CLEAR</div><div class="project-loc">Fort Myers, FL</div></div></div>
+        </div>
+      </div>
+    </section>
+    <div class="pg-cta-band">
+      <div class="container">
+        <h2>YOUR PROJECT COULD BE <span style="color:var(--teal)">NEXT.</span></h2>
+        <p>Fast quotes, fair prices, clean sites. Call Mike directly to get on the schedule.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+          <a href="tel:2398486143" class="btn-primary"><svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z"/></svg>CALL (239) 848-6143</a>
+          <a href="#" data-page="contact" class="btn-outline" style="border-color:rgba(255,255,255,.4);color:#fff">REQUEST A QUOTE</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ CONTACT PAGE ═══ -->
+  <div id="page-contact" class="wp-page">
+    <div class="pg-hero">
+      <div class="container pg-hero-inner">
+        <span class="pg-eyebrow">Get In Touch</span>
+        <h1 class="pg-h1">REQUEST A <span class="teal">QUOTE</span></h1>
+        <p class="pg-sub">Fill out the form and Mike will get back to you same day. Or just call — we're available 24/7.</p>
+      </div>
+    </div>
+    <section class="pg-section">
+      <div class="container">
+        <div class="cpage-layout">
+          <div>
+            <div class="cpage-info-item">
+              <div class="cpage-info-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.06 6.06l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+              <div><div class="cpage-info-label">Phone</div><div class="cpage-info-val"><a href="tel:2398486143">(239) 848-6143</a></div></div>
+            </div>
+            <div class="cpage-info-item">
+              <div class="cpage-info-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+              <div><div class="cpage-info-label">Email</div><div class="cpage-info-val"><a href="mailto:willpowersolutionsfl@gmail.com">willpowersolutionsfl@gmail.com</a></div></div>
+            </div>
+            <div class="cpage-info-item">
+              <div class="cpage-info-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z"/></svg></div>
+              <div><div class="cpage-info-label">Location</div><div class="cpage-info-val">Fort Myers, FL</div></div>
+            </div>
+            <div class="cpage-info-item">
+              <div class="cpage-info-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+              <div><div class="cpage-info-label">Availability</div><div class="cpage-info-val">24 Hours · 7 Days a Week</div></div>
+            </div>
+          </div>
+          <div class="quote-form">
+            <div class="form-row">
+              <div class="form-group"><label>First Name</label><input type="text" placeholder="Mike"></div>
+              <div class="form-group"><label>Last Name</label><input type="text" placeholder="Smith"></div>
+            </div>
+            <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="(239) 000-0000"></div>
+            <div class="form-group"><label>Email Address</label><input type="email" placeholder="mike@example.com"></div>
+            <div class="form-group"><label>Service Needed</label>
+              <select>
+                <option value="">Select a service...</option>
+                <option>Residential Demolition</option>
+                <option>Interior Gut-Out</option>
+                <option>Tile Removal</option>
+                <option>Condo Renovation Demo</option>
+                <option>Concrete Removal</option>
+                <option>Site Cleanup</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Project Details</label><textarea placeholder="Describe your project, location, and timeline..."></textarea></div>
+            <button class="form-submit" type="button">SUBMIT REQUEST &rarr;</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 
   <script>
     // NAV
@@ -960,6 +1135,54 @@
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // PAGE ROUTING
+    const mainHome = document.getElementById('main-home');
+    const wpPages = document.querySelectorAll('.wp-page');
+    const validPages = ['services','projects','contact'];
+
+    function showPage(name) {
+      if (!name || !validPages.includes(name)) {
+        document.body.classList.remove('wp-paged');
+        wpPages.forEach(p => { p.classList.remove('wp-active'); setTimeout(() => { if (!p.classList.contains('wp-active')) p.style.display = 'none'; }, 360); });
+        window.scrollTo(0, 0);
+        return;
+      }
+      document.body.classList.add('wp-paged');
+      wpPages.forEach(p => {
+        const target = p.id === 'page-' + name;
+        if (target) {
+          p.style.display = 'block';
+          requestAnimationFrame(() => requestAnimationFrame(() => p.classList.add('wp-active')));
+        } else {
+          p.classList.remove('wp-active');
+          setTimeout(() => { if (!p.classList.contains('wp-active')) p.style.display = 'none'; }, 360);
+        }
+      });
+      window.scrollTo(0, 0);
+    }
+
+    document.addEventListener('click', e => {
+      const a = e.target.closest('[data-page]');
+      if (!a) return;
+      e.preventDefault();
+      mobileMenu.classList.remove('open');
+      const pg = a.dataset.page;
+      showPage(pg);
+      history.pushState({ page: pg }, '', '#' + pg);
+    });
+
+    document.querySelector('.nav-logo').addEventListener('click', e => {
+      if (document.body.classList.contains('wp-paged')) {
+        e.preventDefault();
+        showPage(null);
+        history.pushState({}, '', location.pathname);
+      }
+    });
+
+    window.addEventListener('popstate', e => showPage(e.state?.page || null));
+    const ih = location.hash.replace('#','');
+    if (validPages.includes(ih)) showPage(ih);
   </script>
 </body>
 </html>
