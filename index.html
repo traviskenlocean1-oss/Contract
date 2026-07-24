@@ -65,10 +65,10 @@
     ::-webkit-scrollbar-thumb { background: var(--teal); }
 
     .container { max-width: 1220px; margin: 0 auto; padding: 0 32px; }
-    .section-label { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: 3.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .section-label { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: 3.5px; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
     .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(42px, 5.5vw, 72px); line-height: 1; color: var(--black); letter-spacing: 1px; }
     .section-title .teal { color: var(--teal); }
-    .section-title .gold { color: var(--gold); }
+    .section-title .gold { color: var(--teal); }
     .section-sub { font-size: 18px; color: var(--gray); max-width: 600px; margin-top: 16px; line-height: 1.7; font-weight: 500; }
 
     .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--teal); color: #fff; font-weight: 800; font-size: 15px; letter-spacing: .5px; padding: 17px 36px; border: none; cursor: pointer; transition: background .2s, transform .15s; text-transform: uppercase; }
@@ -83,13 +83,13 @@
       height: var(--ann-h);
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 32px;
-      border-bottom: 2px solid var(--gold);
+      border-bottom: 2px solid var(--teal);
     }
     .ann-msg { font-size: 12px; color: rgba(255,255,255,.5); font-style: italic; font-weight: 500; letter-spacing: .3px; }
     .ann-links { display: flex; align-items: center; gap: 28px; }
     .ann-link { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; color: rgba(255,255,255,.8); letter-spacing: .3px; white-space: nowrap; transition: color .2s; }
-    .ann-link:hover { color: var(--gold); }
-    .ann-link svg { color: var(--gold); flex-shrink: 0; }
+    .ann-link:hover { color: var(--teal); }
+    .ann-link svg { color: var(--teal); flex-shrink: 0; }
 
     /* ─── NAV ─── */
     nav {
@@ -100,136 +100,111 @@
       transition: box-shadow .3s;
     }
     nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,.1); }
-    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); }
+    .nav-inner { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: var(--nav-h); position: relative; }
     .nav-logo { display: flex; align-items: center; gap: 13px; }
     .nav-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
     .nav-logo-text span:first-child { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 2px; color: var(--teal); }
-    .nav-logo-text span:last-child { font-size: 9px; font-weight: 800; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; }
-    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-logo-text span:last-child { font-size: 9px; font-weight: 800; letter-spacing: 3px; color: var(--teal); text-transform: uppercase; }
+
+    /* Big centered badge logo — a real grid column so it reserves its own
+       width (keeps the side nav links from colliding with it), overflowing
+       below the white nav strip on purpose via natural height overflow. */
+    .nav-badge {
+      grid-column: 2; height: 100%; display: flex; align-items: flex-start;
+      justify-content: center; position: relative; z-index: 3; flex-shrink: 0;
+    }
+    .nav-badge img {
+      height: 138px; width: auto; display: block;
+      filter: drop-shadow(0 14px 22px rgba(0,0,0,.4));
+      transition: height .35s cubic-bezier(.22,1,.36,1);
+    }
+    nav.scrolled .nav-badge img { height: 92px; }
+    .nav-links-left, .nav-links-right { flex-shrink: 0; }
+
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links-left { justify-self: start; }
+    .nav-links-right { justify-self: end; }
     .nav-links a { font-size: 13px; font-weight: 700; letter-spacing: .5px; color: #444; text-transform: uppercase; transition: color .2s; }
     .nav-links a:hover { color: var(--teal); }
-    .nav-cta { background: var(--gold); color: #fff !important; font-weight: 900; font-size: 13px; letter-spacing: .5px; padding: 13px 26px; text-transform: uppercase; transition: background .2s; }
-    .nav-cta:hover { background: #b8911c !important; color: #fff !important; }
+    .nav-cta { background: var(--teal); color: #fff !important; font-weight: 900; font-size: 13px; letter-spacing: .5px; padding: 13px 26px; text-transform: uppercase; transition: background .2s, transform .2s; }
+    .nav-cta:hover { background: var(--teal-dark) !important; color: #fff !important; transform: translateY(-1px); }
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
     .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--black); transition: all .25s; }
     .nav-mobile { display: none; background: #fff; border-top: 1px solid var(--border); padding: 20px 32px; }
     .nav-mobile.open { display: block; }
     .nav-mobile a { display: block; padding: 14px 0; font-size: 16px; font-weight: 700; color: #333; border-bottom: 1px solid var(--border); text-transform: uppercase; letter-spacing: .5px; }
-    .nav-mobile a:last-child { border-bottom: none; color: var(--gold); font-weight: 900; }
+    .nav-mobile a:last-child { border-bottom: none; color: var(--teal); font-weight: 900; }
 
-    /* ─── HERO SLIDER ─── */
-    #hero {
-      height: 100vh;
-      min-height: 620px;
-      position: relative;
-      overflow: hidden;
-      padding-top: calc(var(--ann-h) + var(--nav-h));
+    /* ─── SCROLL-SCRUB VIDEO HERO ─── */
+    .scrub-wrap { position: relative; height: 500vh; }
+    .scrub-pin { position: sticky; top: 0; height: 100vh; min-height: 620px; width: 100%; overflow: hidden; }
+    .scrub-video {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      transform: translateZ(0); backface-visibility: hidden;
+      filter: contrast(1.06) saturate(1.1) brightness(1.02);
     }
-    .hero-slider { position: relative; height: 100%; }
-
-    .hero-slide {
-      position: absolute; inset: 0;
-      opacity: 0;
-      transition: opacity 1s ease;
-      pointer-events: none;
-      display: flex; align-items: center;
-    }
-    .hero-slide.active { opacity: 1; pointer-events: auto; }
-
-    .slide-bg {
-      position: absolute; inset: 0;
-      background-size: cover;
-      background-position: center;
-      transform: scale(1);
-      transition: transform 8s ease;
-    }
-    .hero-slide.active .slide-bg { transform: scale(1.06); }
-
-    .slide-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(95deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,.52) 55%, rgba(0,0,0,.12) 100%);
-    }
-
-    .slide-content {
-      position: relative; z-index: 2;
-      max-width: 640px;
-      padding: 40px 0;
-    }
-
-    .slide-eyebrow {
+    .scrub-overlay { position: absolute; inset: 0; background: linear-gradient(100deg, rgba(0,0,0,.8) 0%, rgba(0,0,0,.48) 55%, rgba(0,0,0,.14) 100%); }
+    .scrub-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; text-align: left; padding: calc(var(--ann-h) + var(--nav-h) + 24px) 0 0; pointer-events: none; }
+    .scrub-center .container { width: 100%; }
+    .scrub-inner { max-width: 640px; }
+    .scrub-eye {
       display: inline-flex; align-items: center; gap: 10px;
       font-size: 11px; font-weight: 800; letter-spacing: 3.5px;
-      color: var(--gold); text-transform: uppercase; margin-bottom: 18px;
+      color: var(--teal); text-transform: uppercase; margin-bottom: 18px;
+      transition: opacity .5s;
     }
-    .slide-dot { width: 5px; height: 5px; background: var(--gold); flex-shrink: 0; }
-
-    .slide-title {
+    .scrub-h1 {
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(58px, 9vw, 116px);
-      line-height: .92;
-      color: #fff;
-      margin-bottom: 22px;
-      letter-spacing: 1px;
+      line-height: .92; color: #fff; margin-bottom: 22px; letter-spacing: 1px;
+      text-shadow: 0 4px 40px rgba(0,0,0,.5);
+      transition: opacity .5s;
     }
-    .slide-title .teal { color: var(--teal); }
-    .slide-title .gold { color: var(--gold); }
+    .scrub-h1 .teal { color: var(--teal); }
+    .scrub-h1 .gold { color: var(--teal); }
+    .scrub-sub {
+      font-size: 17px; color: rgba(255,255,255,.78); max-width: 500px;
+      margin-bottom: 36px; line-height: 1.75; font-weight: 500;
+      transition: opacity .5s;
+    }
+    .scrub-ctas { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; pointer-events: auto; }
 
-    .slide-body {
-      font-size: 17px;
-      color: rgba(255,255,255,.78);
-      max-width: 500px;
-      margin-bottom: 36px;
-      line-height: 1.75;
-      font-style: italic;
-      font-weight: 500;
+    /* scroll hint */
+    .scroll-hint {
+      position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      color: rgba(255,255,255,.55); font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+      animation: wpBounce 2s ease-in-out infinite; transition: opacity .4s; pointer-events: none;
+    }
+    @keyframes wpBounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+    .scroll-hint svg { color: var(--teal); }
+
+    /* stage label */
+    .stage-lbl {
+      position: absolute; bottom: 88px; left: 50%; transform: translateX(-50%);
+      font-family: 'Bebas Neue', sans-serif; font-size: clamp(18px, 3vw, 30px);
+      letter-spacing: .22em; color: var(--teal); text-transform: uppercase;
+      opacity: 0; transition: opacity .4s; white-space: nowrap; pointer-events: none;
     }
 
-    .slide-ctas { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
-
-    /* Arrows */
-    .hero-arr {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      z-index: 10;
-      width: 54px; height: 54px;
-      background: rgba(255,255,255,.12);
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(255,255,255,.25);
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; color: #fff;
-      transition: background .2s, border-color .2s;
-    }
-    .hero-arr:hover { background: var(--teal); border-color: var(--teal); }
-    .hero-prev { left: 24px; }
-    .hero-next { right: 24px; }
-
-    /* Dots */
-    .hero-dots {
-      position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-      display: flex; gap: 10px; z-index: 10;
-    }
-    .hero-dot {
-      width: 10px; height: 10px;
-      background: rgba(255,255,255,.35);
-      border: none; cursor: pointer; padding: 0;
-      transition: background .3s, transform .3s;
-    }
-    .hero-dot.active { background: var(--gold); transform: scale(1.3); }
+    /* progress bar */
+    .scrub-bar { position: absolute; bottom: 0; left: 0; height: 4px; background: var(--teal); width: 0%; box-shadow: 0 0 14px var(--teal); transition: width .04s linear; }
 
     /* ─── QUOTE SECTION ─── */
     #quote { padding: 100px 0; background: var(--black); }
     .quote-layout { display: grid; grid-template-columns: 1fr 500px; gap: 80px; align-items: center; }
-    .quote-eyebrow { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: 3.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .quote-eyebrow { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: 3.5px; text-transform: uppercase; color: var(--teal); margin-bottom: 16px; }
     .quote-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 5vw, 64px); line-height: 1; color: #fff; margin-bottom: 18px; letter-spacing: 1px; }
     .quote-title .teal { color: var(--teal); }
     .quote-desc { font-size: 17px; color: rgba(255,255,255,.5); line-height: 1.75; margin-bottom: 32px; font-weight: 500; max-width: 460px; }
     .quote-bullets { display: flex; flex-direction: column; gap: 14px; margin-bottom: 40px; }
     .quote-bullet { display: flex; align-items: center; gap: 14px; font-size: 15px; color: rgba(255,255,255,.8); font-weight: 600; }
     .quote-bullet-icon { width: 32px; height: 32px; background: var(--teal); display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0; font-size: 15px; }
-    .quote-phone { font-family: 'Bebas Neue', sans-serif; font-size: 38px; color: var(--gold); letter-spacing: 2px; }
+    .quote-phone { font-family: 'Bebas Neue', sans-serif; font-size: 38px; color: var(--teal); letter-spacing: 2px; }
 
     /* Form card */
     .hero-form-card { background: #fff; padding: 48px 42px; box-shadow: 0 24px 80px rgba(0,0,0,.5); }
-    .form-eyebrow { font-size: 11px; font-weight: 800; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
+    .form-eyebrow { font-size: 11px; font-weight: 800; letter-spacing: 3px; color: var(--teal); text-transform: uppercase; margin-bottom: 10px; }
     .form-title { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--black); margin-bottom: 28px; letter-spacing: 1px; line-height: 1; }
     .form-group { margin-bottom: 14px; }
     .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 15px 18px; border: 1.5px solid var(--border); background: #fff; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; color: var(--black); outline: none; transition: border-color .2s; appearance: none; }
@@ -238,16 +213,16 @@
     .form-group textarea { resize: vertical; min-height: 90px; }
     .form-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .form-submit { width: 100%; padding: 20px; background: var(--gold); color: #fff; font-family: 'Inter', sans-serif; font-weight: 900; font-size: 17px; letter-spacing: 1.5px; text-transform: uppercase; border: none; cursor: pointer; transition: background .2s, transform .15s; margin-top: 8px; }
-    .form-submit:hover { background: #b8911c; transform: translateY(-1px); }
+    .form-submit { width: 100%; padding: 20px; background: var(--teal); color: #fff; font-family: 'Inter', sans-serif; font-weight: 900; font-size: 17px; letter-spacing: 1.5px; text-transform: uppercase; border: none; cursor: pointer; transition: background .2s, transform .15s; margin-top: 8px; }
+    .form-submit:hover { background: var(--teal-dark); transform: translateY(-1px); }
 
     /* ─── TRUST BAR ─── */
-    #trust { background: var(--black); padding: 0; border-top: 4px solid var(--gold); }
+    #trust { background: var(--black); padding: 0; border-top: 4px solid var(--teal); }
     .trust-scroll { display: flex; overflow-x: auto; }
     .trust-scroll::-webkit-scrollbar { display: none; }
     .trust-item { display: flex; align-items: center; gap: 12px; padding: 20px 42px; border-right: 1px solid rgba(255,255,255,.1); white-space: nowrap; flex-shrink: 0; }
     .trust-item:last-child { border-right: none; }
-    .trust-icon { color: var(--gold); font-size: 20px; }
+    .trust-icon { color: var(--teal); font-size: 20px; }
     .trust-text { font-size: 14px; font-weight: 700; color: #fff; letter-spacing: .3px; }
     .trust-text em { font-style: normal; color: rgba(255,255,255,.5); font-weight: 500; }
 
@@ -272,7 +247,7 @@
     .why-point-title { font-weight: 800; font-size: 16px; margin-bottom: 5px; color: var(--black); letter-spacing: .2px; }
     .why-point-desc { font-size: 14px; color: var(--gray); line-height: 1.7; font-weight: 500; }
     .why-right-col { padding-top: 16px; }
-    .why-cta-block { background: var(--white); border: 1px solid var(--border); padding: 40px; margin-top: 40px; border-left: 5px solid var(--gold); }
+    .why-cta-block { background: var(--white); border: 1px solid var(--border); padding: 40px; margin-top: 40px; border-left: 5px solid var(--teal); }
     .why-cta-block p { font-size: 17px; color: var(--gray); line-height: 1.7; margin-bottom: 28px; font-weight: 500; }
 
     /* ─── PROJECTS ─── */
@@ -325,19 +300,19 @@
 
     /* ─── FINAL CTA ─── */
     #cta { padding: 110px 0; background: var(--black); position: relative; overflow: hidden; }
-    .cta-stripe { position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, var(--gold), var(--teal)); }
+    .cta-stripe { position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, var(--teal), var(--black), var(--teal)); }
     .cta-inner { text-align: center; max-width: 720px; margin: 0 auto; position: relative; z-index: 2; }
     .cta-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(52px, 7vw, 90px); line-height: 1; color: #fff; margin-bottom: 20px; letter-spacing: 1px; }
     .cta-title .teal { color: var(--teal); }
     .cta-desc { font-size: 18px; color: rgba(255,255,255,.55); margin-bottom: 44px; line-height: 1.7; font-weight: 500; }
     .cta-btns { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-bottom: 40px; }
-    .cta-phone { font-family: 'Bebas Neue', sans-serif; font-size: 38px; color: var(--gold); letter-spacing: 3px; }
+    .cta-phone { font-family: 'Bebas Neue', sans-serif; font-size: 38px; color: var(--teal); letter-spacing: 3px; }
 
     /* ─── FOOTER ─── */
     footer { background: #0a0a0a; border-top: 1px solid rgba(255,255,255,.07); padding: 64px 0 36px; }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 64px; margin-bottom: 52px; }
     .footer-desc { font-size: 14px; color: rgba(255,255,255,.45); line-height: 1.8; margin-top: 18px; max-width: 300px; font-weight: 500; }
-    .footer-heading { font-size: 10px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+    .footer-heading { font-size: 10px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--teal); margin-bottom: 20px; }
     .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
     .footer-links a { font-size: 14px; font-weight: 600; color: rgba(255,255,255,.45); transition: color .2s; }
     .footer-links a:hover { color: #fff; }
@@ -347,10 +322,13 @@
     .footer-copy { font-size: 12px; color: rgba(255,255,255,.25); font-weight: 500; }
 
     /* ─── ANIMATIONS ─── */
-    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity .65s ease, transform .65s ease; }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up { opacity: 0; transform: translateY(34px) scale(.98); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+    .fade-up.visible { opacity: 1; transform: translateY(0) scale(1); }
     .fd1 { transition-delay: .1s; } .fd2 { transition-delay: .2s; } .fd3 { transition-delay: .3s; }
     .fd4 { transition-delay: .4s; } .fd5 { transition-delay: .5s; }
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up { transition: opacity .3s ease; transform: none !important; }
+    }
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 1100px) {
@@ -367,9 +345,12 @@
     @media (max-width: 768px) {
       #announce { display: none; }
       nav { top: 0; }
-      #hero { padding-top: 76px; }
-      .nav-links, .nav-cta { display: none; }
-      .nav-hamburger { display: flex; }
+      .scrub-wrap { height: 350vh; }
+      .scrub-center { padding-top: calc(var(--nav-h) + 24px); }
+      .nav-links-left, .nav-links-right, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; z-index: 4; }
+      .nav-badge img { height: 76px; }
+      nav.scrolled .nav-badge img { height: 60px; }
       .services-grid { grid-template-columns: 1fr; }
       .projects-grid { grid-template-columns: 1fr; }
       .reviews-grid { grid-template-columns: 1fr; }
@@ -383,7 +364,7 @@
     @media (max-width: 480px) {
       .btn-primary, .btn-outline { width: 100%; justify-content: center; }
       .cta-btns { flex-direction: column; }
-      .slide-title { font-size: 54px; }
+      .scrub-h1 { font-size: 54px; }
     }
     /* ─── PAGE ROUTING ─── */
     body.wp-paged #main-home { display: none; }
@@ -392,7 +373,7 @@
     .pg-hero { padding: calc(var(--ann-h) + var(--nav-h) + 72px) 0 72px; background: #0a0a0a; position: relative; overflow: hidden; }
     .pg-hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,180,160,.13) 0%, transparent 60%); pointer-events: none; }
     .pg-hero-inner { position: relative; z-index: 1; }
-    .pg-eyebrow { font-size: 11px; font-weight: 800; letter-spacing: 3.5px; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 14px; }
+    .pg-eyebrow { font-size: 11px; font-weight: 800; letter-spacing: 3.5px; text-transform: uppercase; color: var(--teal); display: block; margin-bottom: 14px; }
     .pg-h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(52px, 7vw, 96px); color: #fff; line-height: 1; letter-spacing: 1px; margin-bottom: 20px; }
     .pg-h1 .teal { color: var(--teal); }
     .pg-sub { font-size: 17px; color: rgba(255,255,255,.6); max-width: 520px; line-height: 1.7; }
@@ -408,6 +389,28 @@
     .cpage-info-label { font-size: 10px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gray); margin-bottom: 5px; }
     .cpage-info-val { font-size: 17px; font-weight: 700; color: var(--black); }
     .cpage-info-val a { color: var(--teal); text-decoration: none; }
+    /* ─── STACKING PROCESS CARDS (Services page) ─── */
+    .stack-section { padding: 100px 0 40px; background: var(--black); }
+    .stack-header { text-align: center; margin-bottom: 10px; }
+    .stack-header .section-label, .stack-header .section-title { color: var(--white); }
+    .stack-header .section-sub { color: rgba(255,255,255,.55); margin-left: auto; margin-right: auto; }
+    .stack-wrap { position: relative; margin-top: 40px; }
+    .stack-card { position: sticky; top: calc(var(--nav-h) + 36px); height: 62vh; min-height: 400px; display: flex; align-items: center; justify-content: center; margin-bottom: 46px; }
+    .stack-inner {
+      width: min(760px, 90vw); background: #fff; border-radius: 6px;
+      padding: 56px 60px; box-shadow: 0 34px 90px rgba(0,0,0,.55);
+      display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: center;
+      will-change: transform, opacity, filter;
+    }
+    .stack-num { font-family: 'Bebas Neue', sans-serif; font-size: 76px; line-height: 1; color: var(--teal); }
+    .stack-title { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 1px; color: var(--black); margin-bottom: 10px; }
+    .stack-desc { font-size: 16px; color: var(--gray); line-height: 1.7; font-weight: 500; }
+    @media(max-width:640px){
+      .stack-card { height: 52vh; min-height: 340px; }
+      .stack-inner { grid-template-columns: 1fr; gap: 16px; padding: 40px 32px; text-align: center; }
+      .stack-num { font-size: 54px; }
+    }
+
     @media(max-width:900px){.pg-projects-grid{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:640px){.pg-projects-grid{grid-template-columns:1fr}.cpage-layout{grid-template-columns:1fr}}
   </style>
@@ -433,21 +436,17 @@
   <nav id="navbar">
     <div class="container">
       <div class="nav-inner">
-        <a href="#hero" class="nav-logo">
-          <svg width="46" height="44" viewBox="0 0 46 44" fill="none">
-            <polyline points="2,30 23,10 44,30" stroke="#C9A020" stroke-width="5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
-            <polyline points="2,18 23,38 44,18" stroke="#00897B" stroke-width="5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
-            <polygon points="23,16 27,24 23,32 19,24" fill="#C9A020"/>
-          </svg>
-          <div class="nav-logo-text">
-            <span>WILLPOWER SOLUTIONS</span>
-            <span>DEMOLITION SERVICES</span>
-          </div>
-        </a>
-        <ul class="nav-links">
+        <ul class="nav-links nav-links-left">
           <li><a href="#" data-page="services">Services</a></li>
           <li><a href="#" data-page="projects">Projects</a></li>
           <li><a href="#reviews">Reviews</a></li>
+        </ul>
+
+        <a href="#hero" class="nav-badge" id="navBadge" aria-label="Willpower Solutions — Demolition Services">
+          <img src="willpower-logo.png" alt="Willpower Solutions Demolition Services">
+        </a>
+
+        <ul class="nav-links nav-links-right">
           <li><a href="#area">Service Area</a></li>
           <li><a href="#" data-page="contact" class="nav-cta">REQUEST A QUOTE</a></li>
         </ul>
@@ -462,88 +461,40 @@
       <a href="#reviews" class="mobile-link">Reviews</a>
       <a href="#area" class="mobile-link">Service Area</a>
       <a href="#" class="mobile-link" data-page="contact">Request a Quote</a>
-      <a href="#quote" class="mobile-link">Request a Quote</a>
       <a href="tel:2398486143">&#x260E; (239) 848-6143</a>
     </div>
   </nav>
 
   <div id="main-home">
-  <!-- HERO SLIDER -->
+  <!-- SCROLL-SCRUB VIDEO HERO -->
   <section id="hero">
-    <div class="hero-slider">
-
-      <!-- Slide 1 -->
-      <div class="hero-slide">
-        <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1599732596061-1f381074f115?auto=format&fit=crop&w=1920&q=80')"></div>
-        <div class="slide-overlay"></div>
-        <div class="container">
-          <div class="slide-content">
-            <div class="slide-eyebrow"><span class="slide-dot"></span> Fort Myers, FL &mdash; Available 24/7</div>
-            <h1 class="slide-title">DEMOLITION &amp;<br><span class="teal">REMOVAL SERVICES</span><br>IN FORT MYERS</h1>
-            <p class="slide-body">Reliable demolition and removal in Southwest Florida. Residential teardowns, interior gut-outs, tile removal, concrete removal, and full site cleanup.</p>
-            <div class="slide-ctas">
-              <a href="#quote" class="btn-primary">REQUEST A QUOTE</a>
-              <a href="tel:2398486143" class="btn-outline" style="border-color:rgba(255,255,255,.5);color:#fff;">
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z"/></svg>
-                (239) 848-6143
-              </a>
+    <div class="scrub-wrap" id="scrub-wrap">
+      <div class="scrub-pin">
+        <video class="scrub-video" id="scrub-video" src="demo-hero.mp4" poster="demo-hero-poster.jpg" muted playsinline preload="auto" webkit-playsinline></video>
+        <div class="scrub-overlay"></div>
+        <div class="scrub-center">
+          <div class="container">
+            <div class="scrub-inner">
+              <div class="scrub-eye" id="scrub-eye">Fort Myers, FL &mdash; Available 24/7</div>
+              <h1 class="scrub-h1" id="scrub-h1">ONE CALL.<br>ONE HIT.<br><span class="teal">DONE RIGHT.</span></h1>
+              <p class="scrub-sub" id="scrub-sub">Reliable demolition and removal in Southwest Florida &mdash; residential teardowns, interior gut-outs, concrete removal, and full site cleanup.</p>
+              <div class="scrub-ctas">
+                <a href="#quote" class="btn-primary">REQUEST A QUOTE</a>
+                <a href="tel:2398486143" class="btn-outline" style="border-color:rgba(255,255,255,.5);color:#fff;">
+                  <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z"/></svg>
+                  (239) 848-6143
+                </a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <!-- Slide 2 -->
-      <div class="hero-slide">
-        <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1572949645415-8f26e838a1d4?auto=format&fit=crop&w=1920&q=80')"></div>
-        <div class="slide-overlay"></div>
-        <div class="container">
-          <div class="slide-content">
-            <div class="slide-eyebrow"><span class="slide-dot"></span> Residential &amp; Commercial</div>
-            <h1 class="slide-title">WILLPOWER IS A<br><span class="teal">FULL-SERVICE</span><br><span class="gold">COMPANY</span></h1>
-            <p class="slide-body">Professional demolition, removal, and cleanup services across Southwest Florida. Residential teardowns, bathroom and kitchen gut-outs, condo renovation demo, and more.</p>
-            <div class="slide-ctas">
-              <a href="#quote" class="btn-primary">GET A FREE ESTIMATE</a>
-              <a href="#services" class="btn-outline" style="border-color:rgba(255,255,255,.5);color:#fff;">VIEW SERVICES</a>
-            </div>
-          </div>
+        <div class="scroll-hint" id="scroll-hint">
+          Scroll to watch
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
         </div>
+        <div class="stage-lbl" id="stage-lbl"></div>
+        <div class="scrub-bar" id="scrub-bar"></div>
       </div>
-
-      <!-- Slide 3 -->
-      <div class="hero-slide">
-        <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1920&q=80')"></div>
-        <div class="slide-overlay"></div>
-        <div class="container">
-          <div class="slide-content">
-            <div class="slide-eyebrow"><span class="slide-dot"></span> Emergency Response</div>
-            <h1 class="slide-title">CLEAN DEMO.<br><span class="teal">FAST REMOVAL.</span><br>CALL MIKE.</h1>
-            <p class="slide-body">Fast quotes, fair prices, and a clean site when the job is done. Call Mike directly to schedule your project.</p>
-            <div class="slide-ctas">
-              <a href="tel:2398486143" class="btn-primary">
-                <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z"/></svg>
-                CALL (239) 848-6143
-              </a>
-              <a href="#quote" class="btn-outline" style="border-color:rgba(255,255,255,.5);color:#fff;">REQUEST A QUOTE</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Arrows -->
-      <button class="hero-arr hero-prev" aria-label="Previous slide">
-        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-      </button>
-      <button class="hero-arr hero-next" aria-label="Next slide">
-        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-      </button>
-
-      <!-- Dots -->
-      <div class="hero-dots">
-        <button class="hero-dot" aria-label="Slide 1"></button>
-        <button class="hero-dot" aria-label="Slide 2"></button>
-        <button class="hero-dot" aria-label="Slide 3"></button>
-      </div>
-
     </div>
   </section>
 
@@ -562,7 +513,7 @@
   <section id="quote">
     <div class="container">
       <div class="quote-layout">
-        <div>
+        <div class="fade-up">
           <span class="quote-eyebrow">Free Estimates — No Obligation</span>
           <h2 class="quote-title">GET YOUR FREE<br><span class="teal">QUOTE TODAY</span></h2>
           <p class="quote-desc">Tell us about your project and we'll get back to you fast with a straight number — no pressure, no hidden fees.</p>
@@ -586,7 +537,7 @@
           </div>
           <a href="tel:2398486143" class="quote-phone">(239) 848-6143</a>
         </div>
-        <div class="hero-form-card">
+        <div class="hero-form-card fade-up fd1">
           <div class="form-eyebrow">Free Estimates &mdash; No Obligation</div>
           <div class="form-title">GET A FREE QUOTE</div>
           <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
@@ -910,11 +861,7 @@
       <div class="footer-grid">
         <div>
           <div class="nav-logo">
-            <svg width="40" height="38" viewBox="0 0 46 44" fill="none">
-              <polyline points="2,30 23,10 44,30" stroke="#C9A020" stroke-width="5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
-              <polyline points="2,18 23,38 44,18" stroke="#00897B" stroke-width="5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
-              <polygon points="23,16 27,24 23,32 19,24" fill="#C9A020"/>
-            </svg>
+            <img src="willpower-logo.png" alt="Willpower Solutions" style="height:56px;width:auto;">
             <div class="nav-logo-text"><span>WILLPOWER SOLUTIONS</span><span>DEMOLITION SERVICES</span></div>
           </div>
           <p class="footer-desc">Fort Myers' trusted demolition professionals. Serving Lee, Collier, and Charlotte counties across Southwest Florida.</p>
@@ -998,6 +945,54 @@
         </div>
       </div>
     </section>
+
+    <!-- STACKING PROCESS CARDS -->
+    <section class="stack-section">
+      <div class="container stack-header">
+        <span class="section-label">How It Works</span>
+        <h2 class="section-title">FROM CALL <span class="teal">TO CLEAN SITE</span></h2>
+        <p class="section-sub">Keep scrolling — here's exactly what happens on every job, start to finish.</p>
+      </div>
+      <div class="stack-wrap" id="stackWrap">
+        <div class="stack-card">
+          <div class="stack-inner">
+            <div class="stack-num">01</div>
+            <div>
+              <div class="stack-title">Call or Request a Quote</div>
+              <p class="stack-desc">Reach Mike directly or submit a quote request online. Tell us what you need torn down or removed — we respond same day, most of the time within the hour.</p>
+            </div>
+          </div>
+        </div>
+        <div class="stack-card">
+          <div class="stack-inner">
+            <div class="stack-num">02</div>
+            <div>
+              <div class="stack-title">Free On-Site Estimate</div>
+              <p class="stack-desc">We walk the property, scope the job, and give you a straight number — no obligation, no hidden fees. You'll know the price before anything starts.</p>
+            </div>
+          </div>
+        </div>
+        <div class="stack-card">
+          <div class="stack-inner">
+            <div class="stack-num">03</div>
+            <div>
+              <div class="stack-title">Demolition Day</div>
+              <p class="stack-desc">Our crew shows up on schedule, works safely, and gets it done — residential teardowns, interior gut-outs, concrete, or tile, handled efficiently from start to finish.</p>
+            </div>
+          </div>
+        </div>
+        <div class="stack-card">
+          <div class="stack-inner">
+            <div class="stack-num">04</div>
+            <div>
+              <div class="stack-title">Clean Site Handoff</div>
+              <p class="stack-desc">Every job ends with full debris hauling and a broom-clean site. No dumpster rental needed on your end — we load it, haul it, and leave it ready for what's next.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <div class="pg-cta-band">
       <div class="container">
         <h2>READY TO <span style="color:var(--teal)">GET STARTED?</span></h2>
@@ -1109,26 +1104,88 @@
     const nav = document.getElementById('navbar');
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
 
-    // SLIDER
-    const slides = document.querySelectorAll('.hero-slide');
-    const dots = document.querySelectorAll('.hero-dot');
-    let cur = 0, timer;
+    // SCROLL-SCRUB VIDEO HERO
+    const scrubVideo = document.getElementById('scrub-video');
+    const scrubWrap  = document.getElementById('scrub-wrap');
+    const scrollHint = document.getElementById('scroll-hint');
+    const stageLbl   = document.getElementById('stage-lbl');
+    const scrubBar   = document.getElementById('scrub-bar');
+    const scrubEye   = document.getElementById('scrub-eye');
+    const scrubH1    = document.getElementById('scrub-h1');
+    const scrubSub   = document.getElementById('scrub-sub');
 
-    function goTo(n) {
-      slides[cur].classList.remove('active');
-      dots[cur].classList.remove('active');
-      cur = (n + slides.length) % slides.length;
-      slides[cur].classList.add('active');
-      dots[cur].classList.add('active');
+    const stages = [
+      { at: 0,    text: '' },
+      { at: 0.06, text: 'STANDING STRONG' },
+      { at: 0.45, text: 'ONE DECISIVE HIT' },
+      { at: 0.78, text: 'CLEAN. FAST. DONE.' },
+    ];
+
+    let prevStage = '', raf = false;
+
+    function scrubProg() {
+      const t = scrubWrap.offsetTop, h = scrubWrap.offsetHeight, vh = window.innerHeight;
+      return Math.max(0, Math.min(1, (window.scrollY - t) / (h - vh)));
     }
-    function startTimer() { clearInterval(timer); timer = setInterval(() => goTo(cur + 1), 5500); }
 
-    document.querySelector('.hero-prev').addEventListener('click', () => { goTo(cur - 1); startTimer(); });
-    document.querySelector('.hero-next').addEventListener('click', () => { goTo(cur + 1); startTimer(); });
-    dots.forEach((d, i) => d.addEventListener('click', () => { goTo(i); startTimer(); }));
+    function scrubTick() {
+      const p = scrubProg();
+      if (scrubVideo.readyState >= 2 && scrubVideo.duration) scrubVideo.currentTime = p * scrubVideo.duration;
+      scrubBar.style.width = (p * 100) + '%';
+      scrollHint.style.opacity = p < 0.03 ? 1 : 0;
+      const fade = p < 0.08 ? 1 : Math.max(0, 1 - (p - 0.08) / 0.07);
+      scrubH1.style.opacity = scrubSub.style.opacity = scrubEye.style.opacity = fade;
+      let active = '';
+      for (let i = stages.length - 1; i >= 0; i--) { if (p >= stages[i].at) { active = stages[i].text; break; } }
+      if (active !== prevStage) {
+        prevStage = active;
+        stageLbl.textContent = active;
+        stageLbl.style.opacity = active && p > 0.04 ? 1 : 0;
+      }
+      raf = false;
+    }
 
-    goTo(0);
-    startTimer();
+    window.addEventListener('scroll', () => { if (!raf) { raf = true; requestAnimationFrame(scrubTick); } }, { passive: true });
+    scrubVideo.addEventListener('loadedmetadata', () => { scrubVideo.currentTime = 0; });
+
+    // iOS Safari (and some mobile browsers) never decode a muted video's frames
+    // until playback has actually started once - without this, programmatic
+    // currentTime scrubbing just renders black. Warm it up on first touch/scroll.
+    let scrubWarmed = false;
+    function warmUpScrubVideo() {
+      if (scrubWarmed) return;
+      scrubWarmed = true;
+      const p = scrubVideo.play();
+      if (p && p.then) p.then(() => scrubVideo.pause()).catch(() => {});
+      else scrubVideo.pause();
+    }
+    window.addEventListener('touchstart', warmUpScrubVideo, { passive: true, once: true });
+    window.addEventListener('scroll', warmUpScrubVideo, { passive: true, once: true });
+
+    // STACKING PROCESS CARDS (Services page) — each card recedes (scales down,
+    // fades, dims) as the next one arrives and covers it.
+    (function () {
+      const cards = Array.from(document.querySelectorAll('#stackWrap .stack-card'));
+      if (!cards.length) return;
+      function tick() {
+        const vh = window.innerHeight;
+        cards.forEach((card, i) => {
+          const next = cards[i + 1];
+          const inner = card.querySelector('.stack-inner');
+          if (!next) { inner.style.transform = ''; inner.style.opacity = ''; inner.style.filter = ''; return; }
+          const stickyTop = parseFloat(getComputedStyle(card).top) || 0;
+          const dist = next.getBoundingClientRect().top - stickyTop;
+          const range = vh * 0.85;
+          const p = Math.max(0, Math.min(1, 1 - dist / range));
+          inner.style.transform = `scale(${1 - p * 0.14}) translateY(${-p * 46}px)`;
+          inner.style.opacity = String(1 - p * 0.75);
+          inner.style.filter = `brightness(${1 - p * 0.35})`;
+        });
+      }
+      window.addEventListener('scroll', () => requestAnimationFrame(tick), { passive: true });
+      window.addEventListener('resize', tick);
+      tick();
+    })();
 
     // FADE-UP OBSERVER
     const observer = new IntersectionObserver(entries => {
@@ -1172,7 +1229,7 @@
       history.pushState({ page: pg }, '', '#' + pg);
     });
 
-    document.querySelector('.nav-logo').addEventListener('click', e => {
+    document.getElementById('navBadge').addEventListener('click', e => {
       if (document.body.classList.contains('wp-paged')) {
         e.preventDefault();
         showPage(null);
