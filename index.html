@@ -97,15 +97,23 @@
       background: rgba(255,255,255,.97);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
-      transition: box-shadow .3s;
+      transition: box-shadow .3s, background-color .6s ease, backdrop-filter .6s ease, border-color .6s ease;
     }
     nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,.1); }
 
-    /* On the home page, only the badge logo shows while the hero scroll is
-       still in progress — the announcement bar and nav links/CTA fade in
-       once the hero finishes, same moment the hero copy reveals. */
+    /* On the home page, while the hero scroll is still in progress, the white
+       nav strip itself must be fully invisible — no fill, no blur (backdrop-filter
+       blurs the footage behind it even at 0 background-opacity, so it has to be
+       turned off too, not just faded) — leaving only the badge logo floating over
+       the footage. The announcement bar and nav links/CTA fade in together with
+       the nav's own background, right when the hero copy reveals at the end. */
     #announce, .nav-links-left, .nav-links-right, .nav-cta, .nav-hamburger {
       opacity: 1; transition: opacity .6s ease;
+    }
+    body.hero-mode nav {
+      background: transparent;
+      backdrop-filter: none;
+      border-bottom-color: transparent;
     }
     body.hero-mode #announce,
     body.hero-mode .nav-links-left,
@@ -149,11 +157,14 @@
     .nav-mobile a { display: block; padding: 14px 0; font-size: 16px; font-weight: 700; color: #333; border-bottom: 1px solid var(--border); text-transform: uppercase; letter-spacing: .5px; }
     .nav-mobile a:last-child { border-bottom: none; color: var(--teal); font-weight: 900; }
 
-    /* ─── SCROLL-SCRUB VIDEO HERO ─── */
+    /* ─── SCROLL-SCRUB FRAME-SEQUENCE HERO ─── */
     .scrub-wrap { position: relative; height: 500vh; }
     .scrub-pin { position: sticky; top: 0; height: 100vh; min-height: 620px; width: 100%; overflow: hidden; }
     .scrub-video {
-      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      /* Canvas paints over this only once frame 1 has loaded — until then the
+         poster shows through the still-transparent backing store. */
+      background: #0a0a0a center/cover no-repeat url('demo-hero-poster.jpg');
       transform: translateZ(0); backface-visibility: hidden;
       filter: contrast(1.06) saturate(1.1) brightness(1.02);
     }
@@ -496,7 +507,7 @@
   <section id="hero">
     <div class="scrub-wrap" id="scrub-wrap">
       <div class="scrub-pin" id="scrub-pin">
-        <video class="scrub-video" id="scrub-video" src="demo-hero.mp4" poster="demo-hero-poster.jpg" muted playsinline preload="auto" webkit-playsinline></video>
+        <canvas class="scrub-video" id="scrub-canvas"></canvas>
         <div class="scrub-overlay"></div>
         <div class="scrub-final-overlay" id="scrub-final-overlay"></div>
         <div class="scrub-center">
@@ -1131,8 +1142,27 @@
     const nav = document.getElementById('navbar');
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
 
-    // SCROLL-SCRUB VIDEO HERO
-    const scrubVideo   = document.getElementById('scrub-video');
+    // SCROLL-SCRUB FRAME-SEQUENCE HERO
+    // Frames extracted from demo-hero.mp4 (121 @ 12fps, 1280w JPEGs). A <video>
+    // with scroll-driven currentTime looked broken here because this host serves
+    // the .mp4 without HTTP Range support (200 instead of 206 on a Range request),
+    // so the browser reports video.seekable === [0,0] and every currentTime
+    // assignment is silently clamped back to 0 — scrubbing never visibly moves.
+    // Plain image requests have no such seek dependency, so drawing frames to a
+    // canvas sidesteps the problem entirely.
+    const HERO_FRAME_COUNT = 121;
+    const heroFramePath = i => `hero-frames/frame-${String(i).padStart(3, '0')}.jpg`;
+    const heroFrames = new Array(HERO_FRAME_COUNT);
+    let heroFramesLoaded = 0;
+    for (let i = 1; i <= HERO_FRAME_COUNT; i++) {
+      const img = new Image();
+      img.src = heroFramePath(i);
+      img.onload = () => { heroFramesLoaded++; if (i === 1) drawHeroFrame(1); };
+      heroFrames[i] = img;
+    }
+
+    const scrubCanvas  = document.getElementById('scrub-canvas');
+    const scrubCtx     = scrubCanvas.getContext('2d');
     const scrubWrap    = document.getElementById('scrub-wrap');
     const scrubPin     = document.getElementById('scrub-pin');
     const scrollHint   = document.getElementById('scroll-hint');
@@ -1158,7 +1188,36 @@
     // the logo, and the progress bar/stage labels.
     const REVEAL_AT = 0.88;
 
-    let prevStage = '', raf = false;
+    let prevStage = '', raf = false, lastDrawnFrame = -1;
+
+    // Size the canvas backing store to the pinned viewport (times devicePixelRatio
+    // for crispness) so drawImage below can do its own object-fit:cover math.
+    function sizeHeroCanvas() {
+      const dpr = window.devicePixelRatio || 1;
+      scrubCanvas.width = Math.round(scrubPin.clientWidth * dpr);
+      scrubCanvas.height = Math.round(scrubPin.clientHeight * dpr);
+      lastDrawnFrame = -1;
+      drawHeroFrame(Math.max(1, lastRequestedFrame));
+    }
+
+    let lastRequestedFrame = 1;
+
+    // Draws frame `n`, falling back to the nearest earlier loaded frame if `n`
+    // hasn't finished loading yet (keeps the scrub visually smooth on slow networks
+    // instead of flashing blank/missing frames).
+    function drawHeroFrame(n) {
+      lastRequestedFrame = n;
+      let idx = n;
+      while (idx > 1 && !(heroFrames[idx] && heroFrames[idx].complete && heroFrames[idx].naturalWidth)) idx--;
+      const img = heroFrames[idx];
+      if (!img || !img.complete || !img.naturalWidth || idx === lastDrawnFrame) return;
+      lastDrawnFrame = idx;
+      const cw = scrubCanvas.width, ch = scrubCanvas.height;
+      const iw = img.naturalWidth, ih = img.naturalHeight;
+      const scale = Math.max(cw / iw, ch / ih);
+      const dw = iw * scale, dh = ih * scale;
+      scrubCtx.drawImage(img, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
+    }
 
     function scrubProg() {
       const t = scrubWrap.offsetTop, h = scrubWrap.offsetHeight, vh = window.innerHeight;
@@ -1167,7 +1226,7 @@
 
     function scrubTick() {
       const p = scrubProg();
-      if (scrubVideo.readyState >= 2 && scrubVideo.duration) scrubVideo.currentTime = p * scrubVideo.duration;
+      drawHeroFrame(1 + Math.round(p * (HERO_FRAME_COUNT - 1)));
       scrubBar.style.width = (p * 100) + '%';
       scrollHint.style.opacity = p < 0.03 ? 1 : 0;
 
@@ -1190,21 +1249,8 @@
     }
 
     window.addEventListener('scroll', () => { if (!raf) { raf = true; requestAnimationFrame(scrubTick); } }, { passive: true });
-    scrubVideo.addEventListener('loadedmetadata', () => { scrubVideo.currentTime = 0; });
-
-    // iOS Safari (and some mobile browsers) never decode a muted video's frames
-    // until playback has actually started once - without this, programmatic
-    // currentTime scrubbing just renders black. Warm it up on first touch/scroll.
-    let scrubWarmed = false;
-    function warmUpScrubVideo() {
-      if (scrubWarmed) return;
-      scrubWarmed = true;
-      const p = scrubVideo.play();
-      if (p && p.then) p.then(() => scrubVideo.pause()).catch(() => {});
-      else scrubVideo.pause();
-    }
-    window.addEventListener('touchstart', warmUpScrubVideo, { passive: true, once: true });
-    window.addEventListener('scroll', warmUpScrubVideo, { passive: true, once: true });
+    window.addEventListener('resize', sizeHeroCanvas);
+    sizeHeroCanvas();
 
     // STACKING PROCESS CARDS (Services page) — each card recedes (scales down,
     // fades, dims) as the next one arrives and covers it.
