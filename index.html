@@ -22,6 +22,8 @@
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://willpowersolutions.com">
   <title>Willpower Solutions | Demolition Services — Fort Myers, FL</title>
+  <link rel="icon" type="image/png" href="willpower-logo.png">
+  <link rel="apple-touch-icon" href="willpower-logo.png">
 
   <script type="application/ld+json">
   {
@@ -228,19 +230,19 @@
     .scrub-bar { position: absolute; bottom: 0; left: 0; height: 4px; background: var(--teal); width: 0%; box-shadow: 0 0 14px var(--teal); transition: width .04s linear; }
 
     /* ─── QUOTE SECTION ─── */
-    #quote { padding: 100px 0; background: var(--black); }
+    #quote { padding: 100px 0; background: var(--white); }
     .quote-layout { display: grid; grid-template-columns: 1fr 500px; gap: 80px; align-items: center; }
     .quote-eyebrow { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: 3.5px; text-transform: uppercase; color: var(--teal); margin-bottom: 16px; }
-    .quote-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 5vw, 64px); line-height: 1; color: #fff; margin-bottom: 18px; letter-spacing: 1px; }
+    .quote-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 5vw, 64px); line-height: 1; color: var(--black); margin-bottom: 18px; letter-spacing: 1px; }
     .quote-title .teal { color: var(--teal); }
-    .quote-desc { font-size: 17px; color: rgba(255,255,255,.5); line-height: 1.75; margin-bottom: 32px; font-weight: 500; max-width: 460px; }
+    .quote-desc { font-size: 17px; color: var(--gray); line-height: 1.75; margin-bottom: 32px; font-weight: 500; max-width: 460px; }
     .quote-bullets { display: flex; flex-direction: column; gap: 14px; margin-bottom: 40px; }
-    .quote-bullet { display: flex; align-items: center; gap: 14px; font-size: 15px; color: rgba(255,255,255,.8); font-weight: 600; }
+    .quote-bullet { display: flex; align-items: center; gap: 14px; font-size: 15px; color: var(--black); font-weight: 600; }
     .quote-bullet-icon { width: 32px; height: 32px; background: var(--teal); display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0; font-size: 15px; }
     .quote-phone { font-family: 'Bebas Neue', sans-serif; font-size: 38px; color: var(--teal); letter-spacing: 2px; }
 
     /* Form card */
-    .hero-form-card { background: #fff; padding: 48px 42px; box-shadow: 0 24px 80px rgba(0,0,0,.5); }
+    .hero-form-card { background: #fff; padding: 48px 42px; box-shadow: 0 8px 32px rgba(0,0,0,.1); border: 1px solid var(--border); }
     .form-eyebrow { font-size: 11px; font-weight: 800; letter-spacing: 3px; color: var(--teal); text-transform: uppercase; margin-bottom: 10px; }
     .form-title { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--black); margin-bottom: 28px; letter-spacing: 1px; line-height: 1; }
     .form-group { margin-bottom: 14px; }
@@ -287,17 +289,23 @@
     .why-cta-block { background: var(--white); border: 1px solid var(--border); padding: 40px; margin-top: 40px; border-left: 5px solid var(--teal); }
     .why-cta-block p { font-size: 17px; color: var(--gray); line-height: 1.7; margin-bottom: 28px; font-weight: 500; }
 
-    /* ─── PROJECTS ─── */
-    #projects { padding: 110px 0; background: #fff; }
-    .projects-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 44px; flex-wrap: wrap; gap: 20px; }
-    .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; }
-    .project-card { position: relative; overflow: hidden; aspect-ratio: 16/10; background: var(--light); }
-    .project-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
-    .project-card:hover img { transform: scale(1.05); }
-    .project-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 28px; background: linear-gradient(transparent, rgba(0,0,0,.82)); }
-    .project-tag { display: inline-block; background: var(--teal); color: #fff; font-size: 10px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; padding: 4px 10px; margin-bottom: 8px; }
-    .project-name { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: #fff; letter-spacing: 1.5px; line-height: 1.1; }
-    .project-loc { font-size: 13px; color: rgba(255,255,255,.65); margin-top: 4px; font-weight: 500; }
+    /* ─── RECENT PROJECTS — sticky photo stack ───
+       Each .proj-panel is a full-viewport sticky slot; N stacked panels take up
+       N*100vh of scroll room and each new panel's image scales/fades in while the
+       previous one scales down, dims, and fades out underneath it. */
+    #projects { padding: 110px 0 0; background: #fff; overflow: clip; }
+    .proj-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 20px; }
+    .proj-stack { position: relative; }
+    .proj-panel { position: sticky; top: 0; height: 100vh; width: 100%; display: flex; align-items: center; justify-content: center; padding: 0 32px; }
+    .proj-inner {
+      position: relative; width: 100%; max-width: 1080px; aspect-ratio: 16/9; max-height: 76vh;
+      overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.3); will-change: transform, opacity;
+    }
+    .proj-inner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .proj-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 30px 38px; background: linear-gradient(transparent, rgba(0,0,0,.85)); }
+    .proj-tag { display: inline-block; background: var(--teal); color: #fff; font-size: 10px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; padding: 4px 10px; margin-bottom: 10px; }
+    .proj-name { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: #fff; letter-spacing: 1.5px; line-height: 1.1; }
+    .proj-loc { font-size: 14px; color: rgba(255,255,255,.65); margin-top: 4px; font-weight: 500; }
 
     /* ─── REVIEWS ─── */
     #reviews { padding: 110px 0; background: var(--light); }
@@ -336,8 +344,11 @@
     .area-chip:hover { background: var(--teal); color: #fff; border-color: var(--teal); }
 
     /* ─── FINAL CTA ─── */
-    #cta { padding: 110px 0; background: var(--black); position: relative; overflow: hidden; }
-    .cta-stripe { position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, var(--teal), var(--black), var(--teal)); }
+    #cta {
+      padding: 130px 0; position: relative; overflow: hidden;
+      background: linear-gradient(rgba(10,10,10,.82), rgba(10,10,10,.88)), url('cta-bg.jpg') center 35%/cover no-repeat;
+    }
+    .cta-stripe { position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, var(--teal), var(--black), var(--teal)); z-index: 2; }
     .cta-inner { text-align: center; max-width: 720px; margin: 0 auto; position: relative; z-index: 2; }
     .cta-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(52px, 7vw, 90px); line-height: 1; color: #fff; margin-bottom: 20px; letter-spacing: 1px; }
     .cta-title .teal { color: var(--teal); }
@@ -389,7 +400,8 @@
       .nav-badge img { height: 76px; }
       nav.scrolled .nav-badge img { height: 60px; }
       .services-grid { grid-template-columns: 1fr; }
-      .projects-grid { grid-template-columns: 1fr; }
+      .proj-panel { padding: 0 16px; }
+      .proj-inner { max-height: 62vh; }
       .reviews-grid { grid-template-columns: 1fr; }
       .area-layout { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; gap: 36px; }
@@ -527,8 +539,7 @@
           </div>
         </div>
         <div class="scroll-hint" id="scroll-hint">
-          Scroll to watch
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
         </div>
         <div class="stage-lbl" id="stage-lbl"></div>
         <div class="scrub-bar" id="scrub-bar"></div>
@@ -600,6 +611,60 @@
             <div class="form-group"><textarea name="message" placeholder="Tell us about your project..."></textarea></div>
             <button type="submit" class="form-submit">GET MY FREE QUOTE</button>
           </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECENT PROJECTS (sticky photo stack — each panel pins full-screen and
+       recedes/fades as the next one scrolls over it) -->
+  <section id="projects">
+    <div class="container proj-head">
+      <div>
+        <span class="section-label fade-up">Our Work</span>
+        <h2 class="section-title fade-up fd1">RECENT <span class="teal">PROJECTS</span></h2>
+      </div>
+      <a href="#quote" class="btn-outline fade-up">START YOUR PROJECT</a>
+    </div>
+    <div class="proj-stack" id="projStack">
+      <div class="proj-panel" style="z-index:1">
+        <div class="proj-inner">
+          <img src="https://images.unsplash.com/photo-1758965285803-1cdd3371563b?auto=format&fit=crop&w=1400&q=80" alt="Excavator demolishing a building with debris pile — Fort Myers FL">
+          <div class="proj-overlay">
+            <span class="proj-tag">Concrete</span>
+            <div class="proj-name">CONCRETE DEMOLITION</div>
+            <div class="proj-loc">Fort Myers, FL</div>
+          </div>
+        </div>
+      </div>
+      <div class="proj-panel" style="z-index:2">
+        <div class="proj-inner">
+          <img src="https://images.unsplash.com/photo-1765959679018-f1436df42a0e?auto=format&fit=crop&w=1400&q=80" alt="Crew overseeing building demolition with excavator — Fort Myers FL">
+          <div class="proj-overlay">
+            <span class="proj-tag">Interior</span>
+            <div class="proj-name">INTERIOR GUT-OUT</div>
+            <div class="proj-loc">Fort Myers, FL</div>
+          </div>
+        </div>
+      </div>
+      <div class="proj-panel" style="z-index:3">
+        <div class="proj-inner">
+          <img src="https://images.unsplash.com/photo-1776594974675-b21647efe342?auto=format&fit=crop&w=1400&q=80" alt="Workers demolishing a building with excavator and tools — Fort Myers FL">
+          <div class="proj-overlay">
+            <span class="proj-tag">Tile</span>
+            <div class="proj-name">TILE REMOVAL</div>
+            <div class="proj-loc">Fort Myers, FL</div>
+          </div>
+        </div>
+      </div>
+      <div class="proj-panel" style="z-index:4">
+        <div class="proj-inner">
+          <img src="https://images.unsplash.com/photo-1777364702593-a975b49659af?auto=format&fit=crop&w=1400&q=80" alt="Excavator demolishing a brick building — Fort Myers FL">
+          <div class="proj-overlay">
+            <span class="proj-tag">Residential</span>
+            <div class="proj-name">FULL STRUCTURE TEARDOWN</div>
+            <div class="proj-loc">Fort Myers, FL</div>
+          </div>
         </div>
       </div>
     </div>
@@ -699,53 +764,6 @@
               <svg width="15" height="15" fill="currentColor" viewBox="0 0 16 16"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z"/></svg>
               CALL (239) 848-6143
             </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="container">
-      <div class="projects-header">
-        <div>
-          <span class="section-label fade-up">Our Work</span>
-          <h2 class="section-title fade-up fd1">RECENT <span class="teal">PROJECTS</span></h2>
-        </div>
-        <a href="#quote" class="btn-outline fade-up">START YOUR PROJECT</a>
-      </div>
-      <div class="projects-grid">
-        <div class="project-card fade-up">
-          <img src="https://images.unsplash.com/photo-1677588508537-5106322c2d40?auto=format&fit=crop&w=900&q=80" alt="Concrete demolition work Fort Myers FL" loading="lazy">
-          <div class="project-overlay">
-            <span class="project-tag">Concrete</span>
-            <div class="project-name">CONCRETE DEMOLITION</div>
-            <div class="project-loc">Fort Myers, FL</div>
-          </div>
-        </div>
-        <div class="project-card fade-up fd1">
-          <img src="https://images.unsplash.com/photo-1711618732595-0c517e08d40c?auto=format&fit=crop&w=900&q=80" alt="Interior gut-out demolition Fort Myers FL" loading="lazy">
-          <div class="project-overlay">
-            <span class="project-tag">Interior</span>
-            <div class="project-name">INTERIOR GUT-OUT</div>
-            <div class="project-loc">Fort Myers, FL</div>
-          </div>
-        </div>
-        <div class="project-card fade-up fd2">
-          <img src="https://images.unsplash.com/photo-1616551569669-b60598758c4f?auto=format&fit=crop&w=900&q=80" alt="Tile removal demolition Fort Myers FL" loading="lazy">
-          <div class="project-overlay">
-            <span class="project-tag">Tile</span>
-            <div class="project-name">TILE REMOVAL</div>
-            <div class="project-loc">Fort Myers, FL</div>
-          </div>
-        </div>
-        <div class="project-card fade-up fd3">
-          <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=900&q=80" alt="Full structure teardown demolition Fort Myers FL" loading="lazy">
-          <div class="project-overlay">
-            <span class="project-tag">Residential</span>
-            <div class="project-name">FULL STRUCTURE TEARDOWN</div>
-            <div class="project-loc">Fort Myers, FL</div>
           </div>
         </div>
       </div>
@@ -1274,6 +1292,37 @@
       }
       window.addEventListener('scroll', () => requestAnimationFrame(tick), { passive: true });
       window.addEventListener('resize', tick);
+      tick();
+    })();
+
+    // RECENT PROJECTS STICKY STACK — each full-screen panel scales/fades in as it
+    // pins, then scales down and fades out as the next panel scrolls over it.
+    (function () {
+      const stack = document.getElementById('projStack');
+      if (!stack) return;
+      const panels = Array.from(stack.querySelectorAll('.proj-panel'));
+      const inners = panels.map(p => p.querySelector('.proj-inner'));
+      let vh = window.innerHeight, stackTop = stack.getBoundingClientRect().top + window.scrollY;
+      function recache() { vh = window.innerHeight; stackTop = stack.getBoundingClientRect().top + window.scrollY; }
+      const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+      const easeInCubic = t => t * t * t;
+      let raf2 = false;
+      function tick() {
+        const scrollY = window.scrollY;
+        for (let i = 0; i < panels.length; i++) {
+          const pOut = Math.max(0, Math.min(1, (scrollY - stackTop - i * vh) / vh));
+          const pIn = i === 0 ? 1 : Math.max(0, Math.min(1, (scrollY - stackTop - (i - 1) * vh) / vh));
+          const eIn = easeOutCubic(pIn), eOut = easeInCubic(pOut);
+          const scale = Math.min(0.72 + 0.28 * eIn, 1 - 0.32 * eOut);
+          const opacity = Math.min(0.05 + 0.95 * eIn, 1 - 0.88 * eOut);
+          const translateY = (1 - eIn) * 60;
+          inners[i].style.transform = `scale(${scale.toFixed(4)}) translateY(${translateY.toFixed(2)}px)`;
+          inners[i].style.opacity = opacity.toFixed(4);
+        }
+        raf2 = false;
+      }
+      window.addEventListener('scroll', () => { if (!raf2) { raf2 = true; requestAnimationFrame(tick); } }, { passive: true });
+      window.addEventListener('resize', () => { recache(); tick(); });
       tick();
     })();
 
