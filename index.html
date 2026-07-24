@@ -106,24 +106,23 @@
     /* On the home page, while the hero scroll is still in progress, the white
        nav strip itself must be fully invisible — no fill, no blur (backdrop-filter
        blurs the footage behind it even at 0 background-opacity, so it has to be
-       turned off too, not just faded) — leaving only the badge logo floating over
-       the footage. The announcement bar and nav links/CTA fade in together with
-       the nav's own background, right when the hero copy reveals at the end. */
-    #announce, .nav-links-left, .nav-links-right, .nav-cta, .nav-hamburger {
-      opacity: 1; transition: opacity .6s ease;
-    }
+       turned off too, not just faded) — but the nav LINKS (Services/Projects/
+       Reviews/Service Area/Request a Quote) stay visible and clickable the whole
+       time, just recolored to read over the footage instead of a white bar.
+       Only the black announcement strip and the white bar itself fade in together
+       once the hero copy reveals at the end. */
+    #announce { opacity: 1; transition: opacity .6s ease; }
+    .nav-links a { transition: color .5s ease, text-shadow .5s ease; }
+    .nav-hamburger span { transition: background-color .5s ease; }
     body.hero-mode nav {
       background: transparent;
       backdrop-filter: none;
       border-bottom-color: transparent;
     }
-    body.hero-mode #announce,
-    body.hero-mode .nav-links-left,
-    body.hero-mode .nav-links-right,
-    body.hero-mode .nav-cta,
-    body.hero-mode .nav-hamburger {
-      opacity: 0; pointer-events: none;
-    }
+    body.hero-mode #announce { opacity: 0; pointer-events: none; }
+    body.hero-mode .nav-links a { color: #fff; text-shadow: 0 1px 8px rgba(0,0,0,.55); }
+    body.hero-mode .nav-links a:hover { color: var(--teal); }
+    body.hero-mode .nav-hamburger span { background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,.4); }
     .nav-inner { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: var(--nav-h); position: relative; }
     .nav-logo { display: flex; align-items: center; gap: 13px; }
     .nav-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
@@ -160,7 +159,7 @@
     .nav-mobile a:last-child { border-bottom: none; color: var(--teal); font-weight: 900; }
 
     /* ─── SCROLL-SCRUB FRAME-SEQUENCE HERO ─── */
-    .scrub-wrap { position: relative; height: 500vh; }
+    .scrub-wrap { position: relative; height: 620vh; }
     .scrub-pin { position: sticky; top: 0; height: 100vh; min-height: 620px; width: 100%; overflow: hidden; }
     .scrub-video {
       position: absolute; inset: 0; width: 100%; height: 100%;
@@ -385,6 +384,14 @@
       .why-layout { grid-template-columns: 1fr; gap: 48px; }
       .area-layout { grid-template-columns: repeat(2, 1fr); }
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 44px; }
+      /* Between the mobile hamburger breakpoint (768px) and full desktop, the
+         unscrolled 138px badge left too little room beside the nav links —
+         shrink it and tighten the links so nothing wraps or collides. */
+      .nav-badge img { height: 96px; }
+      nav.scrolled .nav-badge img { height: 76px; }
+      .nav-links { gap: 18px; }
+      .nav-links a { font-size: 12px; }
+      .nav-cta { padding: 11px 18px; }
     }
     @media (max-width: 860px) {
       .quote-layout { grid-template-columns: 1fr; }
@@ -1225,7 +1232,7 @@
     // instead of flashing blank/missing frames).
     function drawHeroFrame(n) {
       lastRequestedFrame = n;
-      let idx = n;
+      let idx = Math.round(n);
       while (idx > 1 && !(heroFrames[idx] && heroFrames[idx].complete && heroFrames[idx].naturalWidth)) idx--;
       const img = heroFrames[idx];
       if (!img || !img.complete || !img.naturalWidth || idx === lastDrawnFrame) return;
@@ -1237,14 +1244,44 @@
       scrubCtx.drawImage(img, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
     }
 
+    // Rather than snapping straight to the scroll-derived frame, ease the drawn
+    // frame toward it every animation frame. Raw scroll (especially mouse-wheel,
+    // which arrives in discrete jumps) would otherwise make the demolition
+    // footage flicker between frames abruptly; this damps that into a smooth,
+    // slightly trailing motion so it reads as one continuous animation.
+    let targetFrame = 1, smoothedFrame = 1, smoothLoopRunning = false;
+    function frameSmoothLoop() {
+      smoothedFrame += (targetFrame - smoothedFrame) * 0.09;
+      if (Math.abs(targetFrame - smoothedFrame) < 0.04) smoothedFrame = targetFrame;
+      drawHeroFrame(smoothedFrame);
+      if (smoothedFrame !== targetFrame) {
+        requestAnimationFrame(frameSmoothLoop);
+      } else {
+        smoothLoopRunning = false;
+      }
+    }
+    function requestHeroFrame(n) {
+      targetFrame = n;
+      if (!smoothLoopRunning) { smoothLoopRunning = true; requestAnimationFrame(frameSmoothLoop); }
+    }
+
     function scrubProg() {
       const t = scrubWrap.offsetTop, h = scrubWrap.offsetHeight, vh = window.innerHeight;
       return Math.max(0, Math.min(1, (window.scrollY - t) / (h - vh)));
     }
 
     function scrubTick() {
+      // #main-home (and the hero inside it) is only `display:none`-d, not removed,
+      // when a subpage is active — so it still measures as 0-height and this
+      // handler would otherwise keep computing p=0 and re-forcing hero-mode on,
+      // making the nav go transparent on every subpage. Bail out instead.
+      if (document.body.classList.contains('wp-paged')) {
+        document.body.classList.remove('hero-mode');
+        raf = false;
+        return;
+      }
       const p = scrubProg();
-      drawHeroFrame(1 + Math.round(p * (HERO_FRAME_COUNT - 1)));
+      requestHeroFrame(1 + p * (HERO_FRAME_COUNT - 1));
       scrubBar.style.width = (p * 100) + '%';
       scrollHint.style.opacity = p < 0.03 ? 1 : 0;
 
@@ -1345,6 +1382,7 @@
         return;
       }
       document.body.classList.add('wp-paged');
+      document.body.classList.remove('hero-mode');
       wpPages.forEach(p => {
         const target = p.id === 'page-' + name;
         if (target) {
