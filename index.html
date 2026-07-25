@@ -267,14 +267,24 @@
     /* ─── SERVICES ─── */
     #services { padding: 110px 0; background: #fff; }
     .services-header { margin-bottom: 60px; }
-    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); border: 1px solid var(--border); }
-    .service-card { background: #fff; padding: 44px 36px; position: relative; overflow: hidden; transition: background .2s; }
-    .service-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 4px; background: var(--teal); transition: width .35s; }
-    .service-card:hover { background: var(--light); }
-    .service-card:hover::after { width: 100%; }
-    .service-icon { width: 54px; height: 54px; border: 2px solid var(--teal); display: flex; align-items: center; justify-content: center; color: var(--teal); margin-bottom: 24px; }
-    .service-name { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 1.5px; margin-bottom: 12px; color: var(--black); }
-    .service-desc { font-size: 15px; color: var(--gray); line-height: 1.7; font-weight: 500; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .service-card {
+      display: flex; flex-direction: column; background: #fff; border: 1px solid var(--border);
+      overflow: hidden; transition: box-shadow .25s ease, transform .25s ease;
+    }
+    .service-card:hover { box-shadow: 0 24px 56px rgba(0,0,0,.12); transform: translateY(-5px); }
+    .service-photo { position: relative; aspect-ratio: 4/3; overflow: hidden; background: var(--light); }
+    .service-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
+    .service-card:hover .service-photo img { transform: scale(1.07); }
+    .service-icon {
+      position: absolute; bottom: -22px; left: 24px; width: 52px; height: 52px; background: var(--teal);
+      color: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px rgba(0,137,123,.4);
+    }
+    .service-body { padding: 40px 26px 26px; flex: 1; display: flex; flex-direction: column; }
+    .service-name { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 1.5px; margin-bottom: 10px; color: var(--black); }
+    .service-desc { font-size: 14px; color: var(--gray); line-height: 1.7; font-weight: 500; margin-bottom: 22px; flex: 1; }
+    .service-learn { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--teal); transition: gap .2s; }
+    .service-card:hover .service-learn { gap: 13px; }
 
     /* ─── WHY ─── */
     #why { padding: 110px 0; background: var(--light); }
@@ -428,6 +438,7 @@
     .wp-page.wp-active { display: block; opacity: 1; transform: translateX(0); }
     .pg-hero { padding: calc(var(--ann-h) + var(--nav-h) + 72px) 0 72px; background: #0a0a0a; position: relative; overflow: hidden; }
     .pg-hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,180,160,.13) 0%, transparent 60%); pointer-events: none; }
+    .pg-hero-photo { background: linear-gradient(rgba(10,10,10,.75), rgba(10,10,10,.88)), url('cta-bg.jpg') center 30%/cover no-repeat; }
     .pg-hero-inner { position: relative; z-index: 1; }
     .pg-eyebrow { font-size: 11px; font-weight: 800; letter-spacing: 3.5px; text-transform: uppercase; color: var(--teal); display: block; margin-bottom: 14px; }
     .pg-h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(52px, 7vw, 96px); color: #fff; line-height: 1; letter-spacing: 1px; margin-bottom: 20px; }
@@ -686,36 +697,54 @@
         <p class="section-sub fade-up fd2">Residential teardowns, interior gut-outs, tile removal, concrete removal, and full site cleanup across Southwest Florida.</p>
       </div>
       <div class="services-grid">
-        <div class="service-card fade-up">
-          <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-          <div class="service-name">Residential Demolition</div>
-          <p class="service-desc">Full home teardowns, garage demolition, and interior gut-outs. Single-family homes, duplexes, and accessory structures.</p>
-        </div>
-        <div class="service-card fade-up fd1">
-          <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 21V9"/></svg></div>
-          <div class="service-name">Interior Gut-Outs</div>
-          <p class="service-desc">Full bathroom, kitchen, and room demolitions. We strip it down to the studs — clean, fast, and ready for your contractor.</p>
-        </div>
-        <div class="service-card fade-up fd2">
-          <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="1"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
-          <div class="service-name">Tile Removal</div>
-          <p class="service-desc">Floor tile, wall tile, and mortar bed removal. Clean removal without damaging the substrate beneath.</p>
-        </div>
-        <div class="service-card fade-up fd1">
-          <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-          <div class="service-name">Condo Renovation Demo</div>
-          <p class="service-desc">Condo and apartment interior teardowns. We work within building requirements and leave the unit clean and ready.</p>
-        </div>
-        <div class="service-card fade-up fd2">
-          <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
-          <div class="service-name">Concrete Removal</div>
-          <p class="service-desc">Driveways, slabs, sidewalks, and foundations. We break, remove, and haul — leaving a clean, workable surface.</p>
-        </div>
-        <div class="service-card fade-up fd3">
-          <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/></svg></div>
-          <div class="service-name">Debris Removal &amp; Cleanup</div>
-          <p class="service-desc">Post-demo hauling and full site cleanup. We load it, haul it, and leave your property clean — no dumpster needed.</p>
-        </div>
+        <a href="residential-demolition.html" class="service-card fade-up">
+          <div class="service-photo"><img src="service-photos/1764448726225-12da63f109e6.jpg" alt="Residential demolition — Fort Myers FL" loading="lazy"><div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div></div>
+          <div class="service-body">
+            <div class="service-name">Residential Demolition</div>
+            <p class="service-desc">Full home teardowns, garage demolition, and interior gut-outs. Single-family homes, duplexes, and accessory structures.</p>
+            <span class="service-learn">Learn More <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+        <a href="interior-gut-outs.html" class="service-card fade-up fd1">
+          <div class="service-photo"><img src="service-photos/1768321901750-f7b96d774456.jpg" alt="Interior gut-out demolition — Fort Myers FL" loading="lazy"><div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 21V9"/></svg></div></div>
+          <div class="service-body">
+            <div class="service-name">Interior Gut-Outs</div>
+            <p class="service-desc">Full bathroom, kitchen, and room demolitions. We strip it down to the studs — clean, fast, and ready for your contractor.</p>
+            <span class="service-learn">Learn More <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+        <a href="tile-removal.html" class="service-card fade-up fd2">
+          <div class="service-photo"><img src="service-photos/1636200534256-c08268363482.jpg" alt="Tile removal demolition — Fort Myers FL" loading="lazy"><div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="1"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div></div>
+          <div class="service-body">
+            <div class="service-name">Tile Removal</div>
+            <p class="service-desc">Floor tile, wall tile, and mortar bed removal. Clean removal without damaging the substrate beneath.</p>
+            <span class="service-learn">Learn More <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+        <a href="condo-renovation-demo.html" class="service-card fade-up fd1">
+          <div class="service-photo"><img src="service-photos/1768638687896-35bde623d532.jpg" alt="Condo renovation demolition — Fort Myers FL" loading="lazy"><div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div></div>
+          <div class="service-body">
+            <div class="service-name">Condo Renovation Demo</div>
+            <p class="service-desc">Condo and apartment interior teardowns. We work within building requirements and leave the unit clean and ready.</p>
+            <span class="service-learn">Learn More <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+        <a href="concrete-removal.html" class="service-card fade-up fd2">
+          <div class="service-photo"><img src="service-photos/1742036953114-86479b041e81.jpg" alt="Concrete removal demolition — Fort Myers FL" loading="lazy"><div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div></div>
+          <div class="service-body">
+            <div class="service-name">Concrete Removal</div>
+            <p class="service-desc">Driveways, slabs, sidewalks, and foundations. We break, remove, and haul — leaving a clean, workable surface.</p>
+            <span class="service-learn">Learn More <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+        <a href="site-cleanup.html" class="service-card fade-up fd3">
+          <div class="service-photo"><img src="service-photos/1751688220612-e9cae6486014.jpg" alt="Debris removal and site cleanup — Fort Myers FL" loading="lazy"><div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div></div>
+          <div class="service-body">
+            <div class="service-name">Debris Removal &amp; Cleanup</div>
+            <p class="service-desc">Post-demo hauling and full site cleanup. We load it, haul it, and leave your property clean — no dumpster needed.</p>
+            <span class="service-learn">Learn More <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -965,7 +994,7 @@
 
   <!-- ═══ SERVICES PAGE ═══ -->
   <div id="page-services" class="wp-page">
-    <div class="pg-hero">
+    <div class="pg-hero pg-hero-photo">
       <div class="container pg-hero-inner">
         <span class="pg-eyebrow">What We Do</span>
         <h1 class="pg-h1">OUR <span class="teal">SERVICES</span></h1>
@@ -975,36 +1004,54 @@
     <section class="pg-section">
       <div class="container">
         <div class="services-grid">
-          <div class="service-card">
-            <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-            <div class="service-name">Residential Demolition</div>
-            <p class="service-desc">Full home teardowns, garage demolition, and interior gut-outs. Single-family homes, duplexes, and accessory structures.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 21V9"/></svg></div>
-            <div class="service-name">Interior Gut-Outs</div>
-            <p class="service-desc">Full bathroom, kitchen, and room demolitions. We strip it down to the studs — clean, fast, and ready for your contractor.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="1"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
-            <div class="service-name">Tile Removal</div>
-            <p class="service-desc">Floor tile, wall tile, and mortar bed removal. Clean removal without damaging the substrate beneath.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-            <div class="service-name">Condo Renovation Demo</div>
-            <p class="service-desc">Condo and apartment interior teardowns. We work within building requirements and leave the unit clean and ready.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
-            <div class="service-name">Concrete Removal</div>
-            <p class="service-desc">Driveways, slabs, sidewalks, and foundations. We break, remove, and haul — leaving a clean, workable surface.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
-            <div class="service-name">Site Cleanup</div>
-            <p class="service-desc">Full debris removal and site restoration after demo work. We haul everything out and leave it broom-clean.</p>
-          </div>
+          <a href="residential-demolition.html" class="service-card">
+            <div class="service-photo"><img src="service-photos/1764448726225-12da63f109e6.jpg" alt="Residential demolition — Fort Myers FL" loading="lazy"><div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div></div>
+            <div class="service-body">
+              <div class="service-name">Residential Demolition</div>
+              <p class="service-desc">Full home teardowns, garage demolition, and interior gut-outs. Single-family homes, duplexes, and accessory structures.</p>
+              <span class="service-learn">Learn More <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </div>
+          </a>
+          <a href="interior-gut-outs.html" class="service-card">
+            <div class="service-photo"><img src="service-photos/1768321901750-f7b96d774456.jpg" alt="Interior gut-out demolition — Fort Myers FL" loading="lazy"><div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 21V9"/></svg></div></div>
+            <div class="service-body">
+              <div class="service-name">Interior Gut-Outs</div>
+              <p class="service-desc">Full bathroom, kitchen, and room demolitions. We strip it down to the studs — clean, fast, and ready for your contractor.</p>
+              <span class="service-learn">Learn More <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </div>
+          </a>
+          <a href="tile-removal.html" class="service-card">
+            <div class="service-photo"><img src="service-photos/1636200534256-c08268363482.jpg" alt="Tile removal demolition — Fort Myers FL" loading="lazy"><div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="1"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div></div>
+            <div class="service-body">
+              <div class="service-name">Tile Removal</div>
+              <p class="service-desc">Floor tile, wall tile, and mortar bed removal. Clean removal without damaging the substrate beneath.</p>
+              <span class="service-learn">Learn More <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </div>
+          </a>
+          <a href="condo-renovation-demo.html" class="service-card">
+            <div class="service-photo"><img src="service-photos/1768638687896-35bde623d532.jpg" alt="Condo renovation demolition — Fort Myers FL" loading="lazy"><div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div></div>
+            <div class="service-body">
+              <div class="service-name">Condo Renovation Demo</div>
+              <p class="service-desc">Condo and apartment interior teardowns. We work within building requirements and leave the unit clean and ready.</p>
+              <span class="service-learn">Learn More <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </div>
+          </a>
+          <a href="concrete-removal.html" class="service-card">
+            <div class="service-photo"><img src="service-photos/1742036953114-86479b041e81.jpg" alt="Concrete removal demolition — Fort Myers FL" loading="lazy"><div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div></div>
+            <div class="service-body">
+              <div class="service-name">Concrete Removal</div>
+              <p class="service-desc">Driveways, slabs, sidewalks, and foundations. We break, remove, and haul — leaving a clean, workable surface.</p>
+              <span class="service-learn">Learn More <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </div>
+          </a>
+          <a href="site-cleanup.html" class="service-card">
+            <div class="service-photo"><img src="service-photos/1751688220612-e9cae6486014.jpg" alt="Debris removal and site cleanup — Fort Myers FL" loading="lazy"><div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div></div>
+            <div class="service-body">
+              <div class="service-name">Site Cleanup</div>
+              <p class="service-desc">Full debris removal and site restoration after demo work. We haul everything out and leave it broom-clean.</p>
+              <span class="service-learn">Learn More <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </div>
+          </a>
         </div>
       </div>
     </section>
