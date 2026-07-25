@@ -173,6 +173,10 @@
        not sit under a dark wash. Only enough gradient at the very bottom edge
        to keep the scroll-hint legible. */
     .scrub-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0) 70%, rgba(0,0,0,.4) 100%); pointer-events: none; }
+    /* Covers the "KlingAI 3.0" watermark baked into the bottom-right corner
+       of the source footage - a soft radial vignette so it reads as natural
+       shading rather than an obvious patch. */
+    .scrub-watermark-cover { position: absolute; right: 0; bottom: 0; width: 260px; height: 110px; background: radial-gradient(ellipse at bottom right, rgba(0,0,0,.92) 0%, rgba(0,0,0,.75) 40%, rgba(0,0,0,0) 75%); pointer-events: none; }
 
     /* Dedicated end-of-scroll scrim — fades in only near the finish, so the
        hero copy has a legible backdrop without darkening the footage itself. */
@@ -539,6 +543,7 @@
       <div class="scrub-pin" id="scrub-pin">
         <canvas class="scrub-video" id="scrub-canvas"></canvas>
         <div class="scrub-overlay"></div>
+        <div class="scrub-watermark-cover"></div>
         <div class="scrub-final-overlay" id="scrub-final-overlay"></div>
         <div class="scrub-center">
           <div class="container">
